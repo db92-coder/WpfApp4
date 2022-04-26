@@ -22,9 +22,6 @@ namespace WpfApp4.Controller
         {
             return ViewableStaff;
         }
-        public void Add(string ID, string GivenName, string FamilyName)
-        {
-            DBAdapter.AddStaff(ID, GivenName, FamilyName);
-        }
+        
     }
 }
