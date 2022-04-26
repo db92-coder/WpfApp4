@@ -1,0 +1,124 @@
+﻿<Window x:Class="WpfApp4.ConsultationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp4"
+        mc:Ignorable="d"
+        Title="StaffWindow" Height="600" Width="500"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="#181735">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid Background="#0F0F2D"
+              Grid.ColumnSpan="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="95*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="43*"/>
+                <ColumnDefinition Width="56*"/>
+                <ColumnDefinition Width="26*"/>
+                <ColumnDefinition Width="36*"/>
+                <ColumnDefinition Width="36*"/>
+                <ColumnDefinition Width="36*"/>
+                <ColumnDefinition Width="36*"/>
+                <ColumnDefinition Width="36*"/>
+                <ColumnDefinition Width="21*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="CONSULTATION"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontFamily="Fonts/#Dosis"
+                       FontWeight="Medium" Height="15" Width="91" Grid.ColumnSpan="2" Margin="5,0,0,0"/>
+            <TextBlock Text="Add"
+                       Foreground="LightGray"
+                       Grid.Column="1"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="Fonts/#Dosis" Height="15" Width="21"/>
+            <TextBlock Text="Edit"
+                       Foreground="LightGray"
+                       Grid.Column="2"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="Fonts/#Dosis" Height="15" Width="20"/>
+            <TextBlock Text="Remove"
+                       Foreground="LightGray"
+                       Grid.Column="3"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="Fonts/#Dosis" Width="46" Height="15"/>
+
+            <Button Content="Submit"
+                        Foreground="White"
+                        FontSize="10"
+                        FontWeight="Medium"
+                        Margin="28,0,0,0"
+                        Grid.Column="7"
+                        Grid.ColumnSpan="3">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                        <Setter Property="Background" Value="#FE6584"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF4C70"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="75" Height="15"
+                                    CornerRadius="8"
+                                    Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button
+                            Content="🗕"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Margin="4,3,4,4"
+                            Click="ButtonMinimise_Click" Grid.Column="10"/>
+            <Button
+                            Content="□"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="WindowStateButton_Click" Grid.Column="11" Margin="3,2,2,3"/>
+            <Button
+                            Content="🗙"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Foreground="Gray"
+                            FontWeight="Bold"
+                            Click="CloseButton_Click" Grid.Column="12" Margin="4,2,4,3"/>
+
+
+        </Grid>
+    </Grid>
+</Window>
