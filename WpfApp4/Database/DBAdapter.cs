@@ -21,33 +21,14 @@ namespace WpfApp4.Database
         {
             if (conn == null)
             {
-                //Note: This approach is not thread-safe
+                
                 string connectionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", db, server, user, pass);
                 conn = new MySqlConnection(connectionString);
             }
             return conn;
         }
 
-        public static void AddStaff(string ID, string GivenName, string FamilyName)
-        {
-            MySqlConnection conn = GetConnection();
-
-            try
-            {
-                conn.Open();
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO staff (id, givenname, familyname) VALUES ('" + ID + "','" + GivenName + "','" + FamilyName + "')", conn);
-                cmd.ExecuteNonQuery();
-            }
-            catch (MySqlException e)
-            {
-                ReportError("Adding staff", e);
-            }
-            finally
-            {
-                conn.Close();
-
-            }
-        }
+        
         //Reporting error method
         private static void ReportError(string msg, Exception e)
         {
@@ -302,6 +283,335 @@ namespace WpfApp4.Database
             }
 
             return classList;
+
+
+        }
+
+        public static void AddConsultation(int sid, string day, int start, int end)
+        {
+            MySqlDataReader check2 = null;
+            MySqlDataReader check4 = null;
+            MySqlDataReader check6 = null;
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            var check3 = new MySqlCommand("SELECT id FROM staff where id=" + sid, conn);
+            check4 = check3.ExecuteReader();
+            if (!check4.Read())
+            {
+                MessageBox.Show("invalid coordinator id", "Error");
+                check4.Close();
+                conn.Close();
+            }
+            else
+            {
+                check4.Close();
+                var check = new MySqlCommand("Select * from consultation where " + start + " < end and start < " + end + " and staff_id = " + sid + " and day = " + '"' + day + '"', conn);
+                check2 = check.ExecuteReader();
+                if (check2.Read())
+                {
+                    MessageBox.Show("Timetable overlap with consultation", "error");
+                    check2.Close();
+                    conn.Close();
+                }
+                else
+                {
+
+                    check2.Close();
+                    var check5 = new MySqlCommand("Select * from class where " + start + " < end and start < " + end + " and staff = " + sid + " and day = " + '"' + day + '"', conn);
+                    check6 = check5.ExecuteReader();
+                    if (check6.Read())
+                    {
+                        MessageBox.Show("Timetable overlap with class", "error");
+                        check6.Close();
+                        conn.Close();
+                    }
+                    else
+                    {
+                        try
+                        {
+                            check6.Close();
+                            var command = new MySqlCommand("INSERT INTO consultation (staff_id, day, start, end) VALUES('" + sid + "','" + day + "','" + start + "','" + end + "')", conn);
+
+                            command.ExecuteNonQuery();
+
+                        }
+                        finally
+                        {
+                            check6.Close();
+                            conn.Close();
+                        }
+                    }
+                }
+            }
+        }
+        public static void EditConsultation(int sid, string day, int start, int end, string newday, int newstart, int newend)
+        {
+            {
+                MySqlDataReader check2 = null;
+                MySqlDataReader check4 = null;
+                MySqlDataReader check6 = null;
+
+                MySqlConnection conn = GetConnection();
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception ex)
+                {
+
+                }
+                var check3 = new MySqlCommand("SELECT id FROM staff where id=" + sid, conn);
+
+                check4 = check3.ExecuteReader();
+                if (!check4.Read())
+                {
+                    MessageBox.Show("invalid coordinator id", "Error");
+                    check4.Close();
+                    conn.Close();
+                }
+                else
+                {
+                    check4.Close();
+                    var check = new MySqlCommand("SELECT * from consultation where " + newstart + " < end and start < " + newend + " and staff_id = " + sid + " and day = " + '"' + newday + '"', conn);
+                    check2 = check.ExecuteReader();
+                    if (check2.Read())
+                    {
+                        MessageBox.Show("Timetable overlap or consultation does not exist to be edited", "error");
+                        check2.Close();
+                        conn.Close();
+                    }
+                    else
+                    {
+                        check2.Close();
+                        var check5 = new MySqlCommand("SELECT * FROM consultation where staff_id=@id AND day=@day AND start=@start AND end=@end", conn);
+                        check5.Parameters.AddWithValue("@id", sid);
+                        check5.Parameters.AddWithValue("@day", day);
+                        check5.Parameters.AddWithValue("@start", start);
+                        check5.Parameters.AddWithValue("@end", end);
+                        check6 = check5.ExecuteReader();
+
+                        if (!check6.Read())
+                        {
+                            MessageBox.Show("Consultation does not exist", "error");
+                            check6.Close();
+                            conn.Close();
+                        }
+
+                        else
+                        {
+                            try
+                            {
+                                check6.Close();
+                                var command = new MySqlCommand("UPDATE consultation SET day=@newday, start=@newstart, end=@newend WHERE staff_id=@sid AND day=@day AND start=@start AND end=@end", conn);
+                                command.Parameters.AddWithValue("@day", day);
+                                command.Parameters.AddWithValue("@start", start);
+                                command.Parameters.AddWithValue("@end", end);
+                                command.Parameters.AddWithValue("@newday", newday);
+                                command.Parameters.AddWithValue("@newstart", newstart);
+                                command.Parameters.AddWithValue("@newend", newend);
+                                command.Parameters.AddWithValue("@sid", sid);
+
+
+                                command.ExecuteNonQuery();
+
+                            }
+                            finally
+                            {
+                                check6.Close();
+                                conn.Close();
+                            }
+                        }
+
+
+                    }
+                }
+            }
+        }
+
+        public static void RemoveConsultation(int id, string day, int start, int end)
+        {
+            MySqlDataReader check2 = null;
+            MySqlDataReader check4 = null;
+
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            var check3 = new MySqlCommand("SELECT id FROM staff where id=" + id, conn);
+            check4 = check3.ExecuteReader();
+            if (!check4.Read())
+            {
+                MessageBox.Show("invalid coordinator id", "Error");
+                check4.Close();
+                conn.Close();
+            }
+            else
+            {
+                check4.Close();
+                var check = new MySqlCommand("SELECT * FROM consultation where staff_id=@id AND day=@day AND start=@start AND end=@end", conn);
+                check.Parameters.AddWithValue("@id", id);
+                check.Parameters.AddWithValue("@day", day);
+                check.Parameters.AddWithValue("@start", start);
+                check.Parameters.AddWithValue("@end", end);
+
+
+                check2 = check.ExecuteReader();
+                if (!check2.Read())
+                {
+                    MessageBox.Show("Consultation does not exist", "Error");
+                    check2.Close();
+                    conn.Close();
+                }
+                else
+                {
+
+                    try
+                    {
+                        check2.Close();
+                        var command = new MySqlCommand("DELETE FROM consultation WHERE staff_id=@id AND day=@day AND start=@start AND end=@end", conn);
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@day", day);
+                        command.Parameters.AddWithValue("@start", start);
+                        command.Parameters.AddWithValue("@end", end);
+                        command.ExecuteNonQuery();
+
+                    }
+                    finally
+                    {
+                        check2.Close();
+                        conn.Close();
+                    }
+                }
+            }
+        }
+
+        public static void AddClass(string code, string campus, string day, int start, int end, string type, string room, int staff)
+        {
+            MySqlDataReader check2 = null;
+            MySqlDataReader check4 = null;
+            MySqlDataReader check6 = null;
+            MySqlDataReader check8 = null;
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            var check = new MySqlCommand("SELECT id FROM staff where id=" + staff, conn);
+            check2 = check.ExecuteReader();
+
+            if (!check2.Read())
+            {
+                MessageBox.Show("invalid staff id", "Error");
+                check2.Close();
+                conn.Close();
+            }
+            else
+            {
+                check2.Close();
+                var check3 = new MySqlCommand("SELECT code FROM unit where code=" + '"' + code + '"', conn);
+                check4 = check3.ExecuteReader();
+                if (!check4.Read())
+                {
+                    MessageBox.Show("invalid unit code", "Error");
+                    check4.Close();
+                    conn.Close();
+                }
+                else
+                {
+                    check4.Close();
+                    var check5 = new MySqlCommand("Select * from class where " + start + " < end and start < " + end + " and staff = " + staff + " and day = " + '"' + day + '"', conn);
+                    check6 = check5.ExecuteReader();
+                    if (check6.Read())
+                    {
+                        MessageBox.Show("Timetable overlap with class", "error");
+                        check6.Close();
+                        conn.Close();
+                    }
+                    else
+                    {
+                        check6.Close();
+                        var check7 = new MySqlCommand("Select * from consultation where " + start + " < end and start < " + end + " and staff_id = " + staff + " and day = " + '"' + day + '"', conn);
+                        check8 = check7.ExecuteReader();
+                        if (check8.Read())
+                        {
+                            MessageBox.Show("Timetable overlap with consultation", "error");
+                            check8.Close();
+                            conn.Close();
+                        }
+                        else
+                        {
+                            try
+                            {
+                                check6.Close();
+                                var command = new MySqlCommand("INSERT INTO class (unit_code, campus, day, start, end, type, room, staff) VALUES('" + code + "','" + campus + "','" + day + "','" + start + "','" + end + "','" + type + "','" + room + "','" + staff + "')", conn);
+
+                                command.ExecuteNonQuery();
+
+                            }
+                            finally
+                            {
+                                check6.Close();
+                                conn.Close();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void AddUnit(string code, string title, int coordinator)
+        {
+            MySqlDataReader check2 = null;
+            MySqlConnection conn = GetConnection();
+            try
+            {
+                conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            var check = new MySqlCommand("SELECT id FROM staff where id=" + coordinator, conn);
+            check2 = check.ExecuteReader();
+            if (!check2.Read())
+            {
+                MessageBox.Show("invalid coordinator id", "Error");
+                check2.Close();
+                conn.Close();
+            }
+            else
+            {
+                try
+                {
+                    check2.Close();
+                    var command = new MySqlCommand("INSERT INTO unit (code, title, coordinator) VALUES('" + code + "','" + title + "','" + coordinator + "')", conn);
+
+                    command.ExecuteNonQuery();
+
+                }
+                finally
+                {
+                    check2.Close();
+                    conn.Close();
+                }
+
+            }
 
 
         }
