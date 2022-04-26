@@ -28,7 +28,34 @@ namespace WpfApp4.Database
             return conn;
         }
 
-        
+        internal static void AddStaff(string id, string given_name, string family_name)
+        {
+
+            MySqlConnection conn = GetConnection();
+            //  researcher_id = "1234671";
+            //  researcher_type = "staff";
+            //  researcher_given_name = "Jack";
+            //  researcher_family_name = "Wilson";
+
+            try
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO staff (id, given_name, family_name) VALUES('" + id + "','" + given_name + "','" + family_name + "')", conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                ReportError("Adding staff", e);
+            }
+            finally
+            {
+                conn.Close();
+
+            }
+        }
+
+
         //Reporting error method
         private static void ReportError(string msg, Exception e)
         {
@@ -93,10 +120,16 @@ namespace WpfApp4.Database
             return unitDetails;
         }
 
-        /// <summary>
-        ///  Gets basic staff details to populate the staff list view of the GUI
-        /// </summary>
-        /// <returns></returns>
+        internal static void RemoveStaff(string iD, string givenName, string familyName)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void EditStaff(string iD, string givenName, string familyName)
+        {
+            throw new NotImplementedException();
+        }
+
         public static List<Staff> GetStaffDetails()
         {
             MySqlDataReader rdr = null;
@@ -143,11 +176,7 @@ namespace WpfApp4.Database
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id">ID number of given staff member</param>
-        /// <returns>Staff object with all information necessary for add and edit staff detail functions</returns>
+      
         public static Staff GetFullStaffDetails(Staff staff)
         {
 
@@ -615,6 +644,10 @@ namespace WpfApp4.Database
 
 
         }
+
+        
+
+        
     }
 }
 

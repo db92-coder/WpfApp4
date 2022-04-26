@@ -22,9 +22,9 @@ namespace WpfApp4.Controller
         {
             return ViewableStaff;
         }
-        public void Add(string ID, string GivenName, string FamilyName)
+        public void Add(string id, string given_name, string family_name)
         {
-            DBAdapter.AddStaff(ID, GivenName, FamilyName);
+            DBAdapter.AddStaff(id, given_name, family_name);
         }
     }
 }

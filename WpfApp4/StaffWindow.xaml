@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp4"
+        xmlns:local="clr-namespace:WpfApp4" d:DataContext="{d:DesignInstance Type=local:ObservableObject}"
         mc:Ignorable="d"
         Title="StaffWindow" Height="600" Width="500"
         WindowStyle="None"
@@ -12,7 +12,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition/>
+            <RowDefinition Height="343*"/>
+            <RowDefinition Height="232*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -50,24 +51,6 @@
                        HorizontalAlignment="Center"
                        FontFamily="Fonts/#Dosis"
                        FontWeight="Medium" Height="15" Width="34"/>
-            <TextBlock Text="Add"
-                       Foreground="LightGray"
-                       Grid.Column="2"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontFamily="Fonts/#Dosis" Height="15" Width="21"/>
-            <TextBlock Text="Edit"
-                       Foreground="LightGray"
-                       Grid.Column="3"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontFamily="Fonts/#Dosis" Height="15" Width="20"/>
-            <TextBlock Text="Remove"
-                       Foreground="LightGray"
-                       Grid.Column="4"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontFamily="Fonts/#Dosis" Width="46" Height="15"/>
 
             <Button Content="Submit"
                         Foreground="White"
@@ -124,5 +107,161 @@
 
 
         </Grid>
+        <DataGrid x:Name="McDataGrid" 
+                  ItemsSource="{Binding Source={StaticResource viewableStaff}}" 
+                  Grid.Row="2" Grid.ColumnSpan="2"/>
+        <Button x:Name="addStaff" Content="Add"
+                Command="{Binding }"
+                HorizontalAlignment="Left" 
+                Margin="80,0,0,0" 
+                VerticalAlignment="Center" Click="addStaff_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="40" Height="15"
+                                    CornerRadius="8"
+                                    Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+
+        </Button>
+        <TextBox x:Name="textbox_id" 
+                 
+                 HorizontalAlignment="Left" 
+                 Margin="57,83,0,0" 
+                 Grid.Row="1" 
+                 TextWrapping="Wrap" 
+                 Text="ID" 
+                 VerticalAlignment="Top" 
+                 Width="120"/>
+        <TextBox x:Name="textbox_first" HorizontalAlignment="Left" 
+                 Margin="57,106,0,0" 
+                 Grid.Row="1" 
+                 TextWrapping="Wrap" 
+                 Text="Given Name" 
+                 VerticalAlignment="Top" 
+                 Width="120"/>
+
+        <TextBox x:Name="textbox_last" HorizontalAlignment="Left" 
+                 Margin="57,129,0,0"
+                 Grid.Row="1" 
+                 TextWrapping="Wrap"
+                 Text="Family Name"
+                 VerticalAlignment="Top" 
+                 Width="120"/>
+        <TextBox x:Name="textbox_title" HorizontalAlignment="Left" 
+            Margin="57,152,0,0"
+            Grid.Row="1" 
+            TextWrapping="Wrap"
+            Text="Title"
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBox x:Name="textbox_last_campus" HorizontalAlignment="Left" 
+            Margin="57,175,0,0"
+            Grid.Row="1" 
+            TextWrapping="Wrap"
+            Text="Campus"
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBox x:Name="textbox_last_room" HorizontalAlignment="Left" 
+            Margin="57,198,0,0"
+            Grid.Row="1" 
+            TextWrapping="Wrap"
+            Text="Room"
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBox x:Name="textbox_last_email" HorizontalAlignment="Left" 
+            Margin="57,221,0,0"
+            Grid.Row="1" 
+            TextWrapping="Wrap"
+            Text="Email"
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBox x:Name="textbox_last_photo" HorizontalAlignment="Left" 
+            Margin="57,244,0,0"
+            Grid.Row="1" 
+            TextWrapping="Wrap"
+            Text="Photo"
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <TextBox x:Name="textbox_last_category" HorizontalAlignment="Left" 
+            Margin="57,267,0,0"
+            Grid.Row="1" 
+            TextWrapping="Wrap"
+            Text="Category"
+            VerticalAlignment="Top" 
+            Width="120"/>
+        <Button x:Name="editStaff" Content="Edit"
+            Command="{Binding}"
+            HorizontalAlignment="Left" 
+            Margin="130,0,0,0" 
+            VerticalAlignment="Center" Click="editStaff_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="40" Height="15"
+                                    CornerRadius="8"
+                                    Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+
+        </Button>
+        <Button x:Name="removeStaff" Content="Remove"
+            Command="{Binding}"
+            HorizontalAlignment="Left" 
+            Margin="180,0,0,0" 
+            VerticalAlignment="Center" Click="removeStaff_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="50" Height="15"
+                                    CornerRadius="8"
+                                    Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
     </Grid>
 </Window>
