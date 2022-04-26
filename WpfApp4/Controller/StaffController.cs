@@ -26,5 +26,6 @@ namespace WpfApp4.Controller
         {
             DBAdapter.AddStaff(id, given_name, family_name);
         }
+        
     }
 }
