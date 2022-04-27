@@ -29,8 +29,9 @@ namespace WpfApp4.Database
             return conn;
         }
 
-        internal static void AddStaff(string title, string photo,
-            string campus, string email, string phone, string room)
+        //ADDING STAFF DETAILS TO DB
+        internal static void AddStaff(int id, string title, string photo,
+            string campus, string email, int phone, string room)
         {
 
             MySqlConnection conn = GetConnection();
@@ -79,11 +80,8 @@ namespace WpfApp4.Database
             return (T)Enum.Parse(typeof(T), value, true);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id">Staff id of unit coordinator</param>
-        /// <returns>List of units coordinated by given staff member</returns>
+
+        //RETRIEVE UNIT DETAILS FROM DB
         public static List<Unit> GetUnitDetails(int id)
         {
             MySqlDataReader rdr = null;
@@ -126,7 +124,7 @@ namespace WpfApp4.Database
         }
 
 
-        //EDIT STAFF
+        //EDIT STAFF DETAILS IN DB
         internal static void EditStaff(string title, string photo, string id)
         {
             {
@@ -156,9 +154,9 @@ namespace WpfApp4.Database
                 {
                     check4.Close();
                     var command = new MySqlCommand("UPDATE staff SET title, photo)", conn);
-                    command.Parameters.AddWithValue("@title", title);
-                    command.Parameters.AddWithValue("@photo", photo);
-                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@title=", title);
+                    command.Parameters.AddWithValue("@photo=", photo);
+                    command.Parameters.AddWithValue("@id=", id);
 
                     command.ExecuteNonQuery();
                 }
@@ -168,7 +166,7 @@ namespace WpfApp4.Database
             }
         }
     
-
+        //REMOVE STAFF MEMBER FROM DB
         internal static void RemoveStaff(string id)
         {
             {
@@ -199,7 +197,7 @@ namespace WpfApp4.Database
                     check4.Close();
                     var command = new MySqlCommand("DELETE FROM staff WHERE id="+id, conn);
                     
-                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@id=", id);
 
                     command.ExecuteNonQuery();
                 }
@@ -209,6 +207,7 @@ namespace WpfApp4.Database
             }
         }
 
+        //GET ALL STAFF DETAILS FROM DB
         public static List<Staff> GetFullStaffDetails()
         {
             MySqlDataReader rdr = null;
@@ -260,12 +259,7 @@ namespace WpfApp4.Database
 
         }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id">id of staff member attending consultation</param>
-        /// <returns>List of consultations of staff members based on id</returns>
+        //RETRIEVE CONSULT DETAILS FROM DB
         public static List<Consultation> GetConsultationDetails(int id)
         {
             MySqlDataReader rdr = null;
@@ -305,6 +299,8 @@ namespace WpfApp4.Database
             return consultations;
         }
 
+
+        //GET CLASS DETAILS FROM DB
         public static List<UnitClass> GetClassDetails(int id)
         {
             MySqlDataReader rdr = null;
@@ -349,7 +345,7 @@ namespace WpfApp4.Database
 
         }
 
-        public static void AddConsultation(string sid, string day, string start, string end)
+        public static void AddConsultation(int sid, string day, int start, int end)
         {
             MySqlDataReader check2 = null;
             MySqlDataReader check4 = null;
@@ -413,7 +409,7 @@ namespace WpfApp4.Database
                 }
             }
         }
-        public static void EditConsultation(string sid, string day, string start, string end, string newday, string newstart, string newend)
+        public static void EditConsultation(int sid, string day, int start, int end, string newday, int newstart, int newend)
         {
             {
                 MySqlDataReader check2 = null;
@@ -498,7 +494,7 @@ namespace WpfApp4.Database
             }
         }
 
-        public static void RemoveConsultation(string id, string day, string start, string end)
+        public static void RemoveConsultation(int id, string day, int start, int end)
         {
             MySqlDataReader check2 = null;
             MySqlDataReader check4 = null;

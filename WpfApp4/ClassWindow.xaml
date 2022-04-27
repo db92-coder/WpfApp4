@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp4"
         mc:Ignorable="d"
-        Title="StaffWindow" Height="600" Width="500"
+        Title="StaffWindow" Height="400" Width="500"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="#181735">
@@ -72,13 +72,13 @@
                             Foreground="Gray"
                             FontWeight="Bold"
                             Click="CloseButton_Click" Grid.Column="14" Margin="4,2,4,3"/>
-            <Button Grid.Column="2" 
+            <Button x:Name="classAdd_button" Grid.Column="2" 
                     Content="Add" 
                     Grid.ColumnSpan="2" 
                     FontSize="10"
                     HorizontalAlignment="Left" 
                     Margin="10,0,0,0" 
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Center" Click="classAdd_button_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
@@ -102,13 +102,13 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Grid.Column="3" 
+            <Button x:Name="classEdit_Button" Grid.Column="3" 
                     Content="Edit" 
                     Grid.ColumnSpan="2" 
                     FontSize="10"
                     HorizontalAlignment="Left" 
                     Margin="21,0,0,0" 
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Center" Click="classEdit_Button_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
@@ -138,7 +138,9 @@
                     FontSize="10"
                     HorizontalAlignment="Left" 
                     Margin="30,0,0,0" 
-                    VerticalAlignment="Center" Width="47" Click="removeButton_Click" Height="20">
+                    VerticalAlignment="Center" 
+                    Width="47" 
+                    Height="20">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
@@ -165,5 +167,103 @@
 
 
         </Grid>
+        <TextBox x:Name="textbox_unit" HorizontalAlignment="Left" 
+                 Margin="102,95,0,0" 
+                 Grid.Row="1" 
+                 TextWrapping="Wrap"
+                 VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="UnitCode" 
+               Content="Unit Code"
+               HorizontalAlignment="Left" 
+               Margin="34,91,0,0" 
+               Grid.Row="1" 
+               VerticalAlignment="Top" 
+               Foreground="White"/>
+        <Label Content="Campus" 
+               HorizontalAlignment="Left" 
+               Margin="39,122,0,0" 
+               Grid.Row="1" 
+               VerticalAlignment="Top" 
+               Foreground="White"/>
+        <Label x:Name="Day" 
+               Content="Start" 
+               HorizontalAlignment="Left" 
+               Margin="53,183,0,0" 
+               Grid.Row="1" 
+               VerticalAlignment="Top" 
+               Foreground="White"/>
+        <Label x:Name="endTime" 
+               Content="End" 
+               HorizontalAlignment="Left" 
+               Margin="56,219,0,0" 
+               Grid.Row="1" 
+               VerticalAlignment="Top" 
+               Foreground="White"/>
+        <Label x:Name="TypeClass" 
+               Content="Type" 
+               HorizontalAlignment="Left" 
+               Margin="54,251,0,0" 
+               Grid.Row="1" 
+               VerticalAlignment="Top" 
+               Foreground="White"/>
+        <Label x:Name="ClassRoom" 
+               Content="Room" 
+               HorizontalAlignment="Left" 
+               Margin="50,285,0,0" 
+               Grid.Row="1" 
+               VerticalAlignment="Top" 
+               Foreground="White"/>
+        <TextBox x:Name="textbox_campus" HorizontalAlignment="Left" 
+            Margin="102,126,0,0" 
+            Grid.Row="1" 
+            TextWrapping="Wrap" 
+            VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_StartTime"
+                 HorizontalAlignment="Left" 
+            Margin="102,187,0,0" 
+            Grid.Row="1" 
+            TextWrapping="Wrap"
+            VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_EndTime" 
+                 HorizontalAlignment="Left" 
+            Margin="102,223,0,0" 
+            Grid.Row="1" 
+            TextWrapping="Wrap" 
+            VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_type" 
+                 HorizontalAlignment="Left" 
+            Margin="102,255,0,0" 
+            Grid.Row="1" 
+            TextWrapping="Wrap"
+            VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_room" HorizontalAlignment="Left" 
+            Margin="102,289,0,0" 
+            Grid.Row="1" 
+            TextWrapping="Wrap"
+            VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_StaffClass" HorizontalAlignment="Left" 
+            Margin="114,91,0,0" 
+            Grid.Row="1" 
+            TextWrapping="Wrap"
+            VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <Label x:Name="staffClass" 
+            Content="Staff" 
+            HorizontalAlignment="Left" 
+            Margin="42,87,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" 
+            Foreground="White" Grid.Column="1"/>
+        <TextBox x:Name="textbox_day" HorizontalAlignment="Left" 
+            Margin="102,157,0,0" 
+            Grid.Row="1" 
+            TextWrapping="Wrap" 
+            VerticalAlignment="Top" Width="120"/>
+        <Label Content="Day" 
+            HorizontalAlignment="Left" 
+            Margin="55,153,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top" 
+            Foreground="White"/>
+
     </Grid>
 </Window>

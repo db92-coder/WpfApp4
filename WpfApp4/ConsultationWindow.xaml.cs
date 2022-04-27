@@ -53,33 +53,41 @@ namespace WpfApp4
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            string sid = textbox_id.Text;
+            int sid = Int32.Parse(textbox_id.Text);
             string day = textbox_day.Text;
-            string start = textbox_start.Text;
-            string finish = textbox_finish.Text;
+            int start = Int32.Parse(textbox_start.Text);
+            int finish = Int32.Parse(textbox_finish.Text);
 
             DBAdapter.AddConsultation(sid, day, start, finish);
         }
 
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
-            string sid = textbox_id.Text;
+            int sid = Int32.Parse(textbox_id.Text);
             string day = textbox_day.Text;
-            string start = textbox_start.Text;
-            string finish = textbox_finish.Text;
+            int start = Int32.Parse(textbox_start.Text);
+            int finish = Int32.Parse(textbox_finish.Text);
             string newDay = textbox_newDay.Text;
-            string newStart = textbox_newStart.Text;
-            string newEnd = textbox_newEnd.Text;
+            int newStart = Int32.Parse(textbox_newStart.Text);
+            int newEnd = Int32.Parse(textbox_newEnd.Text);
             DBAdapter.EditConsultation(sid, day, start, finish, newDay,newStart,newEnd);
         }
 
         private void removeButton_Click(object sender, RoutedEventArgs e)
         {
-            string sid = textbox_id.Text;
-            string day = textbox_day.Text;
-            string start = textbox_start.Text;
-            string finish = textbox_finish.Text;
-            DBAdapter.RemoveConsultation(sid, day, start, finish);
+            if (String.IsNullOrEmpty(textbox_id.Text) || String.IsNullOrEmpty(textbox_day.Text) || String.IsNullOrEmpty(textbox_start.Text) || String.IsNullOrEmpty(textbox_finish.Text))
+            {
+                MessageBox.Show("Please fill all textboxes for valid removal");
+            }
+
+            else
+            {
+                int sid = Int32.Parse(textbox_id.Text);
+                string day = textbox_day.Text;
+                int start = Int32.Parse(textbox_start.Text);
+                int finish = Int32.Parse(textbox_finish.Text);
+                DBAdapter.RemoveConsultation(sid, day, start, finish);
+            }
         }
     }
 }

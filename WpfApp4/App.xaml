@@ -20,7 +20,6 @@
             <ObjectDataProvider x:Key="viewableStaff"
                                 ObjectInstance="{StaticResource staff}"
                                 MethodName="GetViewableList">
-
             </ObjectDataProvider>
         </ResourceDictionary>
 

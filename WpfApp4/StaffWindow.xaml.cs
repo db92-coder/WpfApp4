@@ -77,11 +77,15 @@ namespace WpfApp4
 
         private void addStaff_Click(object sender, RoutedEventArgs e)
         {
+            int Id = Int32.Parse(textbox_id.Text);
            
-            string ID = textbox_id.Text;
-            string GivenName = textbox_first.Text;
-            string FamilyName = textbox_last.Text;
-            DBAdapter.AddStaff(ID, GivenName, FamilyName);
+            string Title = textbox_id.Text;
+            string Photo = textbox_photo.Text;
+            string Campus = textbox_campus.Text;
+            string Email = textbox_email.Text;
+            int Phone = Int32.Parse(textbox_phone.Text);
+            string Room = textbox_phone.Text;
+            DBAdapter.AddStaff(Id, Title, Photo, Campus, Email, Phone, Room);
             MessageBox.Show("Updated successully!");
         
         }
@@ -89,18 +93,17 @@ namespace WpfApp4
         private void editStaff_Click(object sender, RoutedEventArgs e)
         {
             string ID = textbox_id.Text;
-            string GivenName = textbox_first.Text;
-            string FamilyName = textbox_last.Text;
-            DBAdapter.EditStaff(ID, GivenName, FamilyName);
+            string Title = textbox_title.Text;
+            string Photo = textbox_photo.Text;
+            DBAdapter.EditStaff(ID, Title, Photo);
 
         }
 
         private void removeStaff_Click(object sender, RoutedEventArgs e)
         {
             string ID = textbox_id.Text;
-            string GivenName = textbox_first.Text;
-            string FamilyName = textbox_last.Text;
-            DBAdapter.RemoveStaff(ID, GivenName, FamilyName);
+            
+            DBAdapter.RemoveStaff(ID);
         }
     }
 }
