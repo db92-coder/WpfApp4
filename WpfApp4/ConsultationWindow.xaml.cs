@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp4.Controller;
 
 namespace WpfApp4
 {
@@ -17,9 +18,12 @@ namespace WpfApp4
     /// </summary>
     public partial class ConsultationWindow : Window
     {
+        private const string STAFF_LIST_KEY = "viewableStaff";
+        private StaffController staffController;
         public ConsultationWindow()
         {
             InitializeComponent();
+            staffController = (StaffController)(Application.Current.FindResource(STAFF_LIST_KEY) as ObjectDataProvider).ObjectInstance;
         }
 
         //MINIMISE WINDOW BUTTON
@@ -48,6 +52,34 @@ namespace WpfApp4
             App.Current.MainWindow = main;
             this.Close();
             //main.Show();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void addCons_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void removeCons_Click(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(textbox_ID3.Text) || String.IsNullOrEmpty(textbox_Day3.Text) || String.IsNullOrEmpty(textbox_Start3.Text) || String.IsNullOrEmpty(textbox_Finish3.Text))
+            {
+                MessageBox.Show("Please fill all textboxes for valid removal");
+            }
+
+            else
+            {
+                int id = Int32.Parse(textbox_ID3.Text);
+                string day = textbox_Day3.Text;
+                int start = Int32.Parse(textbox_Start3.Text);
+                int finish = Int32.Parse(textbox_Finish3.Text);
+                staffController.RemoveCons(id, day, start, finish);
+            }
+            
         }
     }
 }

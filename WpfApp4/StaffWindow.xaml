@@ -14,54 +14,13 @@
             <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="154"/>
-                <ColumnDefinition Width="176"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Add Staff" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,40,0,-30"/>
-            <StackPanel Grid.Column="0" Margin="21,68,113,-28" Grid.ColumnSpan="2">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Label Content="Title" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <TextBox Width="104" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,12,0"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0">
-                    <Label Content="Photo" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBox Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="9,0,12,0"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <Label Content="Campus" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBox Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,12,0"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <Label Content="Email" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBox Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <Label Content="Phone" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBox Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <Label Content="Room" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBox Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,12,0"/>
-                </StackPanel>
-                <Button Height="19" Margin="33,20,56,0" Content="Submit" BorderThickness="1,1,1,1"/>
-            </StackPanel>
-            <TextBlock Text="Edit Staff" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="124,10,0,0" Grid.Column="1"/>
-            <StackPanel Grid.Column="1" Margin="88,40,-88,0">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Label Content="Title" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <TextBox Width="104" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,12,0" TextChanged="TextBox_TextChanged"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0">
-                    <Label Content="Photo" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBox Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="9,0,12,0"/>
-                </StackPanel>
-                
-                <Button Height="20" Margin="67,10,42,0" Content="Submit" HorizontalAlignment="Center" VerticalAlignment="Center" Width="67"/>
-            </StackPanel>
 
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
         <Grid Background="#0F0F2D"
               Grid.ColumnSpan="2">
 
@@ -103,12 +62,6 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        FontFamily="Fonts/#Dosis" Height="15" Width="20"/>
-            <TextBlock Text="Remove"
-                       Foreground="LightGray"
-                       Grid.Column="4"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontFamily="Fonts/#Dosis" Width="46" Height="15"/>
 
             <Button Content="Submit"
                         Foreground="White"
