@@ -22,6 +22,23 @@ namespace WpfApp4.Controller
         {
             return ViewableStaff;
         }
-        
+
+
+        public void AddCons(int sid, string day, int start, int end)
+        {
+            DBAdapter.AddConsultation(sid, day, start, end);
+        }
+
+        public void EditCons(int sid, string day, int start, int end, string newday, int newstart, int newend)
+        {
+            DBAdapter.EditConsultation(sid, day, start, end, newday, newstart, newend);
+
+        }
+
+        public void RemoveCons(int id, string day, int start, int end)
+        {
+            DBAdapter.RemoveConsultation(id, day, start, end);
+        }
+
     }
 }
