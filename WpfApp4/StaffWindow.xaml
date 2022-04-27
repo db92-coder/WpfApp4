@@ -15,13 +15,93 @@
             <RowDefinition Height="343*"/>
             <RowDefinition Height="232*"/>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="154"/>
+                <ColumnDefinition Width="176"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="21,68,113,-28" Grid.ColumnSpan="2">
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Left">
+                    <Label Content="Title" 
+                           Foreground="White" 
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Center"/>
+                    <TextBox x:Name="textbox_title" Width="104" 
+                             HorizontalAlignment="Left" 
+                             VerticalAlignment="Center" 
+                             Margin="6,0,12,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Top" 
+                            Margin="0,10,0,0">
+                    <Label Content="Photo" 
+                           Foreground="White" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"/>
+                    <TextBox x:Name="textbox_photo" Width="104" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center" 
+                             Margin="6,0,12,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0,10,0,0">
+                    <Label Content="Campus" 
+                           Foreground="White" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"/>
+                    <TextBox x:Name="textbox_campus" Width="104" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center" 
+                             Margin="6,0,12,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0,10,0,0">
+                    <Label Content="Email" 
+                           Foreground="White" 
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                    <TextBox x:Name="textbox_email" Width="104" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center" 
+                             Margin="6,0,12,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0,10,0,0">
+                    <Label Content="Phone" 
+                            Foreground="White" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center"/>
+                    <TextBox x:Name="textbox_phone" Width="104" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center" 
+                             Margin="6,0,12,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" 
+                            Margin="0,10,0,0">
+                    <Label Content="Room" 
+                           Foreground="White" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center"/>
+                    <TextBox x:Name="textbox_room" Width="104" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center" 
+                             Margin="6,0,12,0"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="104,44,-90,195">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0"/>
+            </StackPanel>
+            <TextBox x:Name="textbox_id" 
+                     TextWrapping="Wrap"
+                     Grid.Column="1" 
+                     Margin="144,48,-74,278"/>
+            <Label Content="ID" Foreground="White" Grid.Column="1" Margin="96,44,37,274"/>
+            <TextBlock x:Name="instruction" HorizontalAlignment="Left" Margin="27,0,0,6" TextWrapping="WrapWithOverflow" VerticalAlignment="Bottom" Width="112" Height="124" Background="White" Grid.Column="1" FontSize="10"><Run Text="To add staff fill  out information and "/><Run Language="en-au" Text="enter ID number. When editing staff member only enter ID number of staff and change title and photo.  When removing staff member, enter their staff ID"/><LineBreak/><Run Language="en-au"/></TextBlock>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-
+        </Grid>
         <Grid Background="#0F0F2D"
               Grid.ColumnSpan="2">
 
@@ -139,7 +219,7 @@
             </Button.Template>
 
         </Button>
-        <TextBox x:Name="textbox_id" 
+        <!--<TextBox x:Name="textbox_id" 
                  
                  HorizontalAlignment="Left" 
                  Margin="57,83,0,0" 
@@ -204,7 +284,7 @@
             TextWrapping="Wrap"
             Text="Category"
             VerticalAlignment="Top" 
-            Width="120"/>
+            Width="120"/>-->
         <Button x:Name="editStaff" Content="Edit"
             Command="{Binding}"
             HorizontalAlignment="Left" 

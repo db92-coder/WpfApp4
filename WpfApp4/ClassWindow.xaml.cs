@@ -49,5 +49,10 @@ namespace WpfApp4
             this.Close();
             //main.Show();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

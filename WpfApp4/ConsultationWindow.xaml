@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp4"
         mc:Ignorable="d"
-        Title="StaffWindow" Height="600" Width="500"
+        Title="StaffWindow" Height="400" Width="500"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="#181735">
@@ -14,16 +14,64 @@
             <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="154"/>
+                <ColumnDefinition Width="176"/>
+                <ColumnDefinition Width="270"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Add Consultation" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="3,9,0,350"/>
+            <StackPanel Grid.Column="0" Margin="0,40,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Label Content="ID" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <TextBox x:Name="textbox_id" Width="104" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,12,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0">
+                    <Label Content="Day" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox x:Name="textbox_day" Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="9,0,12,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Start" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox x:Name="textbox_start" Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,12,0"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Label Content="Finish" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBox x:Name="textbox_finish" Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                </StackPanel>
+            </StackPanel>
+            <TextBlock Text="Edit Consultation" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,6,0,353" Grid.Column="1"/>
+            <StackPanel Grid.Column="1" Margin="0,40,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0"/>
+            </StackPanel>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+            <TextBlock Text="Remove Consultation" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="159,6,0,0" Grid.Column="1" VerticalAlignment="Top" Width="135" Grid.ColumnSpan="2"/>
+            <StackPanel Grid.Column="2" Margin="0,40,100,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0"/>
 
+            </StackPanel>
+            <TextBlock TextWrapping="WrapWithOverflow" Foreground="White" VerticalAlignment="Bottom" Margin="10,0,21,10" HorizontalAlignment="Center" Width="123">Consultation start and finish times are in format HHMMSS</TextBlock>
+            <Button x:Name="addButton" Margin="117,6,10,349" Content="Add" Click="addButton_Click"/>
+            <TextBox x:Name="textbox_newDay" Width="83" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,188,0,0"/>
+            <Label Content="New day" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,184,0,0"/>
+            <Label Content="New start" Foreground="White" Margin="-2,211,95,138"/>
+            <TextBox x:Name="textbox_newStart" Width="93" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,215,0,0"/>
+            <Label Content="New finish" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-2,237,0,0"/>
+            <TextBox x:Name="textbox_newEnd" Width="93" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,245,0,0"/>
+            <Button x:Name="editButton" Margin="121,4,0,352" Content="Edit" HorizontalAlignment="Left" Width="33" Click="editButton_Click" Grid.Column="1"/>
+            <Button x:Name="removeButton" Margin="0,4,0,348" HorizontalAlignment="Center" Width="50" Content="Remove" RenderTransformOrigin="0.5,0.5" Click="removeButton_Click" Grid.Column="2"/>
 
+        </Grid>
         <Grid Background="#0F0F2D"
               Grid.ColumnSpan="2">
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="95*"/>
                 <ColumnDefinition Width="30*"/>
@@ -45,56 +93,8 @@
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        FontFamily="Fonts/#Dosis"
-                       FontWeight="Medium" Height="15" Width="91" Grid.ColumnSpan="2" Margin="5,0,0,0"/>
-            <TextBlock Text="Add"
-                       Foreground="LightGray"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontFamily="Fonts/#Dosis" Height="15" Width="21"/>
-            <TextBlock Text="Edit"
-                       Foreground="LightGray"
-                       Grid.Column="2"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontFamily="Fonts/#Dosis" Height="15" Width="20"/>
-            <TextBlock Text="Remove"
-                       Foreground="LightGray"
-                       Grid.Column="3"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontFamily="Fonts/#Dosis" Width="46" Height="15"/>
+                       FontWeight="Medium" Height="15" Width="91" Grid.ColumnSpan="2" Margin="10,6,0,4"/>
 
-            <Button Content="Submit"
-                        Foreground="White"
-                        FontSize="10"
-                        FontWeight="Medium"
-                        Margin="28,0,0,0"
-                        Grid.Column="7"
-                        Grid.ColumnSpan="3">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
-                        <Setter Property="Background" Value="#FE6584"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF4C70"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Width="75" Height="15"
-                                    CornerRadius="8"
-                                    Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
             <Button
                             Content="🗕"
                             Background="Transparent"

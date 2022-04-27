@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp4.Controller;
 
 namespace WpfApp4
 {
@@ -21,13 +22,16 @@ namespace WpfApp4
     public partial class MainWindow : Window
     {
 
-        //private const string STAFF_KEY = "viewableStaff";
-        //private StaffController staffController;
+        private const string STAFF_KEY = "viewableStaff";
+        private StaffController staffController;
 
 
         public MainWindow()
         {
             InitializeComponent();
+            staffController = (StaffController)
+                (Application.Current.FindResource(STAFF_KEY)
+                as ObjectDataProvider).ObjectInstance;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

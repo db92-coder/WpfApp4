@@ -21,14 +21,16 @@ namespace WpfApp4.Database
         {
             if (conn == null)
             {
-                
-                string connectionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}", db, server, user, pass);
+
+                string connectionString = String.Format("Database={0};Data Source={1};User Id={2};Password={3}"
+                    , db, server, user, pass);
                 conn = new MySqlConnection(connectionString);
             }
             return conn;
         }
 
-        internal static void AddStaff(string id, string given_name, string family_name)
+        internal static void AddStaff(string title, string photo,
+            string campus, string email, string phone, string room)
         {
 
             MySqlConnection conn = GetConnection();
@@ -41,7 +43,10 @@ namespace WpfApp4.Database
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO staff (id, given_name, family_name) VALUES('" + id + "','" + given_name + "','" + family_name + "')", conn);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO staff (title, photo, " +
+                    "campus, email, phone, room) SET" +
+                    "('" + title + "','" + photo + "','" + campus + "','" + '"' + email
+                    + "', '" + phone + "', '" + room + "')", conn);
                 cmd.ExecuteNonQuery();
             }
             catch (MySqlException e)
@@ -120,17 +125,91 @@ namespace WpfApp4.Database
             return unitDetails;
         }
 
-        internal static void RemoveStaff(string iD, string givenName, string familyName)
+
+        //EDIT STAFF
+        internal static void EditStaff(string title, string photo, string id)
         {
-            throw new NotImplementedException();
+            {
+                MySqlDataReader check2 = null;
+                MySqlDataReader check4 = null;
+                MySqlDataReader check6 = null;
+
+                MySqlConnection conn = GetConnection();
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception ex)
+                {
+
+                }
+                var check3 = new MySqlCommand("SELECT id FROM staff where id=" + id, conn);
+
+                check4 = check3.ExecuteReader();
+                if (!check4.Read())
+                {
+                    MessageBox.Show("invalid staff id", "Error");
+                    check4.Close();
+                    conn.Close();
+                }
+                else
+                {
+                    check4.Close();
+                    var command = new MySqlCommand("UPDATE staff SET title, photo)", conn);
+                    command.Parameters.AddWithValue("@title", title);
+                    command.Parameters.AddWithValue("@photo", photo);
+                    command.Parameters.AddWithValue("@id", id);
+
+                    command.ExecuteNonQuery();
+                }
+
+                check4.Close();
+                conn.Close();
+            }
+        }
+    
+
+        internal static void RemoveStaff(string id)
+        {
+            {
+                MySqlDataReader check2 = null;
+                MySqlDataReader check4 = null;
+                MySqlDataReader check6 = null;
+
+                MySqlConnection conn = GetConnection();
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception ex)
+                {
+
+                }
+                var check3 = new MySqlCommand("SELECT id FROM staff where id=" + id, conn);
+
+                check4 = check3.ExecuteReader();
+                if (!check4.Read())
+                {
+                    MessageBox.Show("invalid staff id", "Error");
+                    check4.Close();
+                    conn.Close();
+                }
+                else
+                {
+                    check4.Close();
+                    var command = new MySqlCommand("DELETE FROM staff WHERE id="+id, conn);
+                    
+                    command.Parameters.AddWithValue("@id", id);
+
+                    command.ExecuteNonQuery();
+                }
+
+                check4.Close();
+                conn.Close();
+            }
         }
 
-        internal static void EditStaff(string iD, string givenName, string familyName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static List<Staff> GetStaffDetails()
+        public static List<Staff> GetFullStaffDetails()
         {
             MySqlDataReader rdr = null;
             MySqlConnection conn = GetConnection();
@@ -140,7 +219,7 @@ namespace WpfApp4.Database
             try
             {
                 conn.Open();
-                var command = new MySqlCommand("SELECT id, given_name, family_name, title, campus FROM staff", conn);
+                var command = new MySqlCommand("SELECT id, given_name, family_name,title,campus,phone,room,email,category FROM staff", conn);
                 rdr = command.ExecuteReader();
 
                 while (rdr.Read())
@@ -153,7 +232,12 @@ namespace WpfApp4.Database
                         GivenName = rdr.GetString(1),
                         FamilyName = rdr.GetString(2),
                         Title = rdr.GetString(3),
-                        Campus = ParseEnum<Campus>(rdr.GetString(4))
+                        Campus = ParseEnum<Campus>(rdr.GetString(4)),
+                        Room = rdr.IsDBNull(5) ? null : rdr.GetString(5),
+                        Phone = rdr.GetString(6),
+                        Email =  rdr.GetString(7),
+                        //Photo = rdr.IsDBNull(8) ? null : rdr.GetString(8),
+                        Category = ParseEnum<Category>(rdr.GetString(8))
                     });
 
                 }
@@ -173,57 +257,6 @@ namespace WpfApp4.Database
 
             return staff;
 
-
-        }
-
-      
-        public static Staff GetFullStaffDetails(Staff staff)
-        {
-
-            MySqlDataReader rdr = null;
-            MySqlConnection conn = GetConnection();
-
-            Staff staffDetails = null; // This will be the staff member returned
-
-            try
-            {
-                conn.Open();
-                var command = new MySqlCommand("SELECT * FROM staff where id=?id", conn);
-                command.Parameters.AddWithValue("id", staff.ID);
-
-                rdr = command.ExecuteReader();
-                rdr.Read();
-
-                staffDetails = new Staff
-                {
-                    ID = staff.ID,
-                    GivenName = rdr.GetString(1),
-                    FamilyName = rdr.GetString(2),
-                    Title = rdr.GetString(3),
-                    Campus = ParseEnum<Campus>(rdr.GetString(4)),
-                    Room = rdr.GetString(5),
-                    Phone = rdr.GetString(6),
-                    Email = rdr.GetString(7),
-                    Photo = rdr.GetString(8),
-                    Category = ParseEnum<Category>(rdr.GetString(9))
-
-
-                };
-
-            }
-
-            catch (MySqlException e)
-            {
-                Console.WriteLine("Error: Cannot connect to database " + e);
-            }
-
-            finally
-            {
-                rdr.Close();
-                conn.Close();
-            }
-
-            return staffDetails;
 
         }
 
@@ -316,7 +349,7 @@ namespace WpfApp4.Database
 
         }
 
-        public static void AddConsultation(int sid, string day, int start, int end)
+        public static void AddConsultation(string sid, string day, string start, string end)
         {
             MySqlDataReader check2 = null;
             MySqlDataReader check4 = null;
@@ -367,7 +400,7 @@ namespace WpfApp4.Database
                         {
                             check6.Close();
                             var command = new MySqlCommand("INSERT INTO consultation (staff_id, day, start, end) VALUES('" + sid + "','" + day + "','" + start + "','" + end + "')", conn);
-
+                            MessageBox.Show("Consultation Added");
                             command.ExecuteNonQuery();
 
                         }
@@ -380,7 +413,7 @@ namespace WpfApp4.Database
                 }
             }
         }
-        public static void EditConsultation(int sid, string day, int start, int end, string newday, int newstart, int newend)
+        public static void EditConsultation(string sid, string day, string start, string end, string newday, string newstart, string newend)
         {
             {
                 MySqlDataReader check2 = null;
@@ -409,6 +442,7 @@ namespace WpfApp4.Database
                 {
                     check4.Close();
                     var check = new MySqlCommand("SELECT * from consultation where " + newstart + " < end and start < " + newend + " and staff_id = " + sid + " and day = " + '"' + newday + '"', conn);
+                    MessageBox.Show("Consultation Changed");
                     check2 = check.ExecuteReader();
                     if (check2.Read())
                     {
@@ -464,7 +498,7 @@ namespace WpfApp4.Database
             }
         }
 
-        public static void RemoveConsultation(int id, string day, int start, int end)
+        public static void RemoveConsultation(string id, string day, string start, string end)
         {
             MySqlDataReader check2 = null;
             MySqlDataReader check4 = null;
@@ -479,6 +513,7 @@ namespace WpfApp4.Database
 
             }
             var check3 = new MySqlCommand("SELECT id FROM staff where id=" + id, conn);
+            MessageBox.Show("Consultation Removed");
             check4 = check3.ExecuteReader();
             if (!check4.Read())
             {

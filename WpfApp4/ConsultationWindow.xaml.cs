@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp4.Database;
 
 namespace WpfApp4
 {
@@ -48,6 +49,37 @@ namespace WpfApp4
             App.Current.MainWindow = main;
             this.Close();
             //main.Show();
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            string sid = textbox_id.Text;
+            string day = textbox_day.Text;
+            string start = textbox_start.Text;
+            string finish = textbox_finish.Text;
+
+            DBAdapter.AddConsultation(sid, day, start, finish);
+        }
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            string sid = textbox_id.Text;
+            string day = textbox_day.Text;
+            string start = textbox_start.Text;
+            string finish = textbox_finish.Text;
+            string newDay = textbox_newDay.Text;
+            string newStart = textbox_newStart.Text;
+            string newEnd = textbox_newEnd.Text;
+            DBAdapter.EditConsultation(sid, day, start, finish, newDay,newStart,newEnd);
+        }
+
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+            string sid = textbox_id.Text;
+            string day = textbox_day.Text;
+            string start = textbox_start.Text;
+            string finish = textbox_finish.Text;
+            DBAdapter.RemoveConsultation(sid, day, start, finish);
         }
     }
 }

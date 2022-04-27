@@ -13,7 +13,7 @@ namespace WpfApp4.Controller
         public StaffController()
         {
             
-            Staff = DBAdapter.GetStaffDetails();
+            Staff = DBAdapter.GetFullStaffDetails();
             ViewableStaff = new ObservableCollection<Staff>(Staff);
             
         }
@@ -22,10 +22,10 @@ namespace WpfApp4.Controller
         {
             return ViewableStaff;
         }
-        public void Add(string id, string given_name, string family_name)
+        public void Add(string title, string photo, string campus, 
+            string email, string phone, string room)
         {
-            DBAdapter.AddStaff(id, given_name, family_name);
+            DBAdapter.AddStaff(title, photo,campus,email,phone,room);
         }
-        
     }
 }
