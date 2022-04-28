@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfApp4.Database;
+using WpfApp4.Controller;
 
 namespace WpfApp4
 {

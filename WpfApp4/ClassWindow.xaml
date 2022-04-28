@@ -132,38 +132,6 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="removeButton_Click" Grid.Column="4" 
-                    Content="Remove" 
-                    Grid.ColumnSpan="3"
-                    FontSize="10"
-                    HorizontalAlignment="Left" 
-                    Margin="30,0,0,0" 
-                    VerticalAlignment="Center" 
-                    Width="47" 
-                    Height="20">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
-                        <Setter Property="Background" Value="#FE6584"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF4C70"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Width="40" Height="15"
-                                    CornerRadius="8"
-                                    Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
 
 
         </Grid>
@@ -242,17 +210,17 @@
             TextWrapping="Wrap"
             VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="textbox_StaffClass" HorizontalAlignment="Left" 
-            Margin="114,91,0,0" 
+            Margin="102,64,0,0" 
             Grid.Row="1" 
             TextWrapping="Wrap"
-            VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+            VerticalAlignment="Top" Width="120"/>
         <Label x:Name="staffClass" 
-            Content="Staff" 
+            Content="Staff ID" 
             HorizontalAlignment="Left" 
-            Margin="42,87,0,0" 
+            Margin="41,60,0,0" 
             Grid.Row="1" 
             VerticalAlignment="Top" 
-            Foreground="White" Grid.Column="1"/>
+            Foreground="White"/>
         <TextBox x:Name="textbox_day" HorizontalAlignment="Left" 
             Margin="102,157,0,0" 
             Grid.Row="1" 

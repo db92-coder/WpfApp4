@@ -68,42 +68,32 @@ namespace WpfApp4
                 App.Current.Windows[intCounter].Close();
         }
 
-        
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
+ 
 
         private void addStaff_Click(object sender, RoutedEventArgs e)
         {
-            int Id = Int32.Parse(textbox_id.Text);
-           
-            string Title = textbox_id.Text;
-            string Photo = textbox_photo.Text;
-            string Campus = textbox_campus.Text;
-            string Email = textbox_email.Text;
-            int Phone = Int32.Parse(textbox_phone.Text);
-            string Room = textbox_phone.Text;
-            DBAdapter.AddStaff(Id, Title, Photo, Campus, Email, Phone, Room);
-            MessageBox.Show("Updated successully!");
+
+            int id = Int32.Parse(textbox_id.Text);
+            string title = textbox_title.Text;
+            string campus = textbox_campus.Text;
+            int phone = Int32.Parse(textbox_phone.Text);
+            string room = textbox_phone.Text;
+            string email = textbox_email.Text;
+            string photo = textbox_photo.Text;
+            
+            DBAdapter.AddStaff(id,title, campus,phone,room,email,photo);
         
         }
 
-        private void editStaff_Click(object sender, RoutedEventArgs e)
-        {
-            string ID = textbox_id.Text;
-            string Title = textbox_title.Text;
-            string Photo = textbox_photo.Text;
-            DBAdapter.EditStaff(ID, Title, Photo);
+        //private void editStaff_Click(object sender, RoutedEventArgs e)
+        //{
+        //    int ID = Int32.Parse(textbox_id.Text);
+        //    string Title = textbox_title.Text;
+        //    string Photo = textbox_photo.Text;
+        //    DBAdapter.EditStaff(ID, Title, Photo);
 
-        }
+        //}
 
-        private void removeStaff_Click(object sender, RoutedEventArgs e)
-        {
-            string ID = textbox_id.Text;
-            
-            DBAdapter.RemoveStaff(ID);
-        }
+        
     }
 }

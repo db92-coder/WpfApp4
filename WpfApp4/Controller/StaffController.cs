@@ -5,27 +5,30 @@ using System.Collections.ObjectModel;
 
 namespace WpfApp4.Controller
 {
-    class StaffController : ObservableObject
+    class StaffController :ObservableObject
     {
-        public List<Staff> Staff { get; set; }
-        public ObservableCollection<Staff> ViewableStaff { get; set; }
+        private List<Staff> staff { get; set; }
+        public List<Staff> Employees { get { return staff; } set { } }
+
+        private ObservableCollection<Staff> viewableStaff { get; set; }
+        public ObservableCollection<Staff> VisibleStaff { get { return viewableStaff; } set { } }
 
         public StaffController()
         {
             
-            Staff = DBAdapter.GetFullStaffDetails();
-            ViewableStaff = new ObservableCollection<Staff>(Staff);
+            staff = DBAdapter.GetStaffDetails();
+            viewableStaff = new ObservableCollection<Staff>(staff);
             
         }
 
         public ObservableCollection<Staff> GetViewableList()
         {
-            return ViewableStaff;
+            return VisibleStaff;
         }
-        public void Add(int id, string title, string photo, string campus, 
-            string email, int phone, string room)
+        public void Add(int id,string title, string campus, int phone, string room,
+            string email, string photo)
         {
-            DBAdapter.AddStaff(id, title, photo,campus,email,phone,room);
+            DBAdapter.AddStaff(id,title,campus, phone, room, email,photo );
         }
         
         public void AddCons(int sid, string day, int start, int end)

@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="./ScrollBar.xaml"/>
                 <ResourceDictionary Source="./StaffContactCard.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            
             <local1:StaffController x:Key="staff"/>
             <ObjectDataProvider x:Key="viewableStaff"
                                 ObjectInstance="{StaticResource staff}"

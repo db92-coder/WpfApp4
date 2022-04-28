@@ -62,7 +62,7 @@ namespace WpfApp4
             string Room = textbox_room.Text;
             int Staff = Int32.Parse(textbox_StaffClass.Text);
             DBAdapter.AddClass(Code, Campus, Day, Start, End, Type, Room,Staff);
-            MessageBox.Show("Updated successully!");
+            
         }
 
         private void classEdit_Button_Click(object sender, RoutedEventArgs e)
