@@ -18,9 +18,12 @@ namespace WpfApp4
     /// </summary>
     public partial class ConsultationWindow : Window
     {
+        private const string STAFF_LIST_KEY = "viewableStaff";
+        private StaffController staffController;
         public ConsultationWindow()
         {
             InitializeComponent();
+            staffController = (StaffController)(Application.Current.FindResource(STAFF_LIST_KEY) as ObjectDataProvider).ObjectInstance;
         }
 
         //MINIMISE WINDOW BUTTON

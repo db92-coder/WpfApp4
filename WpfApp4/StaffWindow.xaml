@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp4" d:DataContext="{d:DesignInstance Type=local:ObservableObject}"
         mc:Ignorable="d"
-        Title="StaffWindow" Height="600" Width="500"
+        Title="StaffWindow" Height="400" Width="500"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="#181735">

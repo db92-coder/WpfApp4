@@ -43,5 +43,6 @@ namespace WpfApp4.Controller
         {
             DBAdapter.RemoveConsultation(id, day, start, end);
         }
+
     }
 }
