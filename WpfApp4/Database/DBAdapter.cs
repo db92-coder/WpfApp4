@@ -333,7 +333,7 @@ namespace WpfApp4.Database
         }
 
         //EDIT CLASS 
-        public static void EditClass(int code,string campus, string day, int start, int end, string type, string room, int staff)
+        public static void EditClass(string code,string campus, string day, int start, int end, string type, string room, int staff)
         {
 
         }
