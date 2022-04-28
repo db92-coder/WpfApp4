@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp4.Database;
 
 namespace WpfApp4
 {
@@ -48,6 +49,25 @@ namespace WpfApp4
             App.Current.MainWindow = main;
             this.Close();
             //main.Show();
+        }
+
+        private void classAdd_button_Click(object sender, RoutedEventArgs e)
+        {
+            string Code = textbox_unit.Text;
+            string Campus = textbox_campus.Text;
+            string Day = textbox_day.Text;
+            int Start = Int32.Parse(textbox_StartTime.Text);
+            int End = Int32.Parse(textbox_EndTime.Text);
+            string Type = textbox_type.Text;
+            string Room = textbox_room.Text;
+            int Staff = Int32.Parse(textbox_StaffClass.Text);
+            DBAdapter.AddClass(Code, Campus, Day, Start, End, Type, Room,Staff);
+            MessageBox.Show("Updated successully!");
+        }
+
+        private void classEdit_Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
