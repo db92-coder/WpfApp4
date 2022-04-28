@@ -61,10 +61,10 @@ namespace WpfApp4.Database
         //            command.Parameters.AddWithValue("@title", title);
         //            command.Parameters.AddWithValue("@campus", campus);
         //            command.Parameters.AddWithValue("@phone", phone);
-        //            command.Parameters.AddWithValue("@room",room);
-        //            command.Parameters.AddWithValue("@email",email);
+        //            command.Parameters.AddWithValue("@room", room);
+        //            command.Parameters.AddWithValue("@email", email);
         //            command.Parameters.AddWithValue("@photo", photo);
-        //            command.Parameters.AddWithValue("@id",id);
+        //            command.Parameters.AddWithValue("@id", id);
         //            MessageBox.Show("Details Added");
 
         //        }
@@ -77,35 +77,37 @@ namespace WpfApp4.Database
         //    }
         //}
 
-        //public static void AddStaff(int id, string title, string campus,
-        //    int phone, string room, string email, string photo)
-        //{
 
-        //    MySqlConnection conn = GetConnection();
-        //    //  researcher_id = "1234671";
-        //    //  researcher_type = "staff";
-        //    //  researcher_given_name = "Jack";
-        //    //  researcher_family_name = "Wilson";
+        //add staff method from week 8 tutorial
+        public static void AddStaff(int id, string title, string campus,
+            int phone, string room, string email, string photo)
+        {
 
-        //    try
-        //    {
-        //        conn.Open();
+            MySqlConnection conn = GetConnection();
+            //  researcher_id = "1234671";
+            //  researcher_type = "staff";
+            //  researcher_given_name = "Jack";
+            //  researcher_family_name = "Wilson";
 
-        //        MySqlCommand cmd = new MySqlCommand("INSERT INTO staff (title, campus, phone, room, email, photo) " +
-        //            "VALUES('" + title + "','" + campus + "','" + phone + "','" + room + "','" + email + "','" + photo + "')WHERE id="+id, conn);
-        //        MessageBox.Show("Staff Details Added");
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //    catch (MySqlException e)
-        //    {
-        //        ReportError("Adding staff", e);
-        //    }
-        //    finally
-        //    {
-        //        conn.Close();
+            try
+            {
+                conn.Open();
 
-        //    }
-        //}
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO staff (title, campus, phone, room, email, photo) " +
+                    "VALUES('" + title + "','" + campus + "','" + phone + "','" + room + "','" + email + "','" + photo + "')WHERE id=" + id, conn);
+                MessageBox.Show("Staff Details Added");
+                cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                ReportError("Adding staff", e);
+            }
+            finally
+            {
+                conn.Close();
+
+            }
+        }
 
 
         public static List<Staff> GetStaffDetails()
@@ -222,7 +224,7 @@ namespace WpfApp4.Database
 
 
         //EDIT STAFF DETAILS IN DB
-        internal static void EditStaff(string title, string photo, int id)
+        internal static void EditStaff(int id, string title, string photo)
         {
             {
                 MySqlDataReader check2 = null;
@@ -827,34 +829,37 @@ namespace WpfApp4.Database
 
         }
 
-        public static void AddStaff(int id, string title, string campus,
-            int phone, string room, string email, string photo)
-        {
 
-            MySqlConnection conn = GetConnection();
-            //  researcher_id = "1234671";
-            //  researcher_type = "staff";
-            //  researcher_given_name = "Jack";
-            //  researcher_family_name = "Wilson";
 
-            try
-            {
-                conn.Open();
+        //addstaff 3 method
+        //public static void AddStaff(int id, string title, string campus,
+        //    int phone, string room, string email, string photo)
+        //{
 
-                MySqlCommand cmd = new MySqlCommand("UPDATE `hris`.`staff` SET `title` = '"+title+"','`campus` = '" +campus+"','`phone`='"+phone+ "','`room`='"+room+"','`email`='"+email+"',`photo`='"+photo+"' WHERE `staff`.`id` ='"+id, conn);
-                MessageBox.Show("Staff Details Added");
-                cmd.ExecuteNonQuery();
-            }
-            catch (MySqlException e)
-            {
-                ReportError("Adding staff", e);
-            }
-            finally
-            {
-                conn.Close();
+        //    MySqlConnection conn = GetConnection();
+        //    researcher_id = "1234671";
+        //    researcher_type = "staff";
+        //    researcher_given_name = "Jack";
+        //    researcher_family_name = "Wilson";
 
-            }
-        }
+        //    try
+        //    {
+        //        conn.Open();
+
+        //        MySqlCommand cmd = new MySqlCommand("UPDATE `hris`.`staff` SET `title` = '" + title + "','`campus` = '" + campus + "','`phone`='" + phone + "','`room`='" + room + "','`email`='" + email + "',`photo`='" + photo + "' WHERE `staff`.`id` ='" + id, conn);
+        //        MessageBox.Show("Staff Details Added");
+        //        cmd.ExecuteNonQuery();
+        //    }
+        //    catch (MySqlException e)
+        //    {
+        //        ReportError("Adding staff", e);
+        //    }
+        //    finally
+        //    {
+        //        conn.Close();
+
+        //    }
+        //}
 
 
 
