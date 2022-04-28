@@ -7,20 +7,23 @@ namespace WpfApp4.Controller
 {
     class StaffController : ObservableObject
     {
-        public List<Staff> Staff { get; set; }
-        public ObservableCollection<Staff> ViewableStaff { get; set; }
+        private List<Staff> staff { get; set; }
+        public List<Staff> Employees { get { return staff; } set { } }
+
+        private ObservableCollection<Staff> viewableStaff { get; set; }
+        public ObservableCollection<Staff> VisibleStaff { get { return viewableStaff; } set { } }
 
         public StaffController()
         {
             
-            Staff = DBAdapter.GetFullStaffDetails();
-            ViewableStaff = new ObservableCollection<Staff>(Staff);
+            staff = DBAdapter.GetStaffDetails();
+            viewableStaff = new ObservableCollection<Staff>(staff);
             
         }
 
         public ObservableCollection<Staff> GetViewableList()
         {
-            return ViewableStaff;
+            return VisibleStaff;
         }
         public void Add(int id, string title, string photo, string campus, 
             string email, int phone, string room)
