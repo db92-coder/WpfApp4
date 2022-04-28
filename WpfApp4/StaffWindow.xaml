@@ -241,7 +241,7 @@
             
             HorizontalAlignment="Left" 
             Margin="250,10,0,0" 
-            VerticalAlignment="Top" Grid.Row="1" Height="15" Width="40">
+            VerticalAlignment="Top" Grid.Row="1" Height="15" Width="40" Click="editStaff_Click_1">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>

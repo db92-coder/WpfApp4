@@ -85,7 +85,7 @@ namespace WpfApp4
         
         }
 
-        private void editStaff_Click(object sender, RoutedEventArgs e)
+        private void editStaff_Click_1(object sender, RoutedEventArgs e)
         {
             int ID = Int32.Parse(textbox_id.Text);
             string Title = textbox_title.Text;
@@ -108,6 +108,6 @@ namespace WpfApp4
         //    MessageBox.Show("Updated successully!");
 
         //}
-        
+
     }
 }
