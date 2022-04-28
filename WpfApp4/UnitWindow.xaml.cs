@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp4.Database;
 
 namespace WpfApp4
 {
@@ -72,6 +73,23 @@ namespace WpfApp4
             App.Current.MainWindow = main;
             this.Close();
             //main.Show();
+        }
+
+        private void AddUnit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            string code = textbox_unitcode.Text;
+            string title = textbox_title.Text;
+            int coordinator = Int32.Parse(textbox_coordinator.Text);
+
+            DBAdapter.AddUnit(code, title, coordinator);
+        }
+
+        private void EditUnit_Button_Click(object sender, RoutedEventArgs e)
+        {
+            string code = textbox_unitcode.Text;
+            string title = textbox_title.Text;
+            int id = Int32.Parse(textbox_coordinator.Text);
+            int newId = Int32.Parse(textbox_newCoordinator.Text);
         }
     }
 }

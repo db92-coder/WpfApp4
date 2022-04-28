@@ -9,6 +9,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp4.Controller;
+using WpfApp4.Database;
+using WpfApp4.Entities;
+using WpfApp4.Properties;
 
 namespace WpfApp4
 {
@@ -17,9 +21,17 @@ namespace WpfApp4
     /// </summary>
     public partial class StaffWindow : Window
     {
+
+        private const string STAFF_KEY = "viewableStaff";
+        private StaffController staffController;
+
+
         public StaffWindow()
         {
             InitializeComponent();
+            staffController = (StaffController)
+                (Application.Current.FindResource(STAFF_KEY)
+                as ObjectDataProvider).ObjectInstance;
         }
 
         //MINIMISE WINDOW BUTTON
@@ -54,6 +66,37 @@ namespace WpfApp4
         {
             for (int intCounter = App.Current.Windows.Count - 1; intCounter >= 0; intCounter--)
                 App.Current.Windows[intCounter].Close();
+        }
+
+        
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void addStaff_Click(object sender, RoutedEventArgs e)
+        {
+            int Id = Int32.Parse(textbox_id.Text);
+           
+            string Title = textbox_id.Text;
+            string Photo = textbox_photo.Text;
+            string Campus = textbox_campus.Text;
+            string Email = textbox_email.Text;
+            int Phone = Int32.Parse(textbox_phone.Text);
+            string Room = textbox_phone.Text;
+            DBAdapter.AddStaff(Id, Title, Photo, Campus, Email, Phone, Room);
+            MessageBox.Show("Updated successully!");
+        
+        }
+
+        private void editStaff_Click(object sender, RoutedEventArgs e)
+        {
+            string ID = textbox_id.Text;
+            string Title = textbox_title.Text;
+            string Photo = textbox_photo.Text;
+            DBAdapter.EditStaff(ID, Title, Photo);
+
         }
 
         

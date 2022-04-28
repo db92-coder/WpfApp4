@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp4"
         mc:Ignorable="d"
-        Title="UnitWindow" Height="600" Width="500"
+        Title="UnitWindow" Height="400" Width="500"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="#181735">
@@ -50,55 +50,6 @@
                        HorizontalAlignment="Center"
                        FontFamily="Fonts/#Dosis"
                        FontWeight="Medium" Height="15" Width="34"/>
-            <TextBlock Text="Add"
-                       Foreground="LightGray"
-                       Grid.Column="2"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontFamily="Fonts/#Dosis" Height="15" Width="21"/>
-            <TextBlock Text="Edit"
-                       Foreground="LightGray"
-                       Grid.Column="3"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontFamily="Fonts/#Dosis" Height="15" Width="20"/>
-            <TextBlock Text="Remove"
-                       Foreground="LightGray"
-                       Grid.Column="4"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       FontFamily="Fonts/#Dosis" Width="46" Height="15"/>
-
-            <Button Content="Submit"
-                        Foreground="White"
-                        FontSize="10"
-                        FontWeight="Medium"
-                        Margin="28,0,0,0"
-                        Grid.Column="9"
-                        Grid.ColumnSpan="3">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
-                        <Setter Property="Background" Value="#FE6584"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#FF4C70"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Width="75" Height="15"
-                                    CornerRadius="8"
-                                    Background="{TemplateBinding Background}">
-                            <ContentPresenter VerticalAlignment="Center"
-                                                  HorizontalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
             <Button
                             Content="🗕"
                             Background="Transparent"
@@ -124,5 +75,79 @@
 
 
         </Grid>
+        <Label x:Name="Unit_Code" Content="Unit Code" HorizontalAlignment="Left" Margin="10,99,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="Unit_Title" Content="Unit Title" HorizontalAlignment="Left" Margin="10,126,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="Unit_Coordinator" Content="Unit Coordinator" HorizontalAlignment="Left" Margin="10,157,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Width="100"/>
+        <TextBox x:Name="textbox_unitcode" HorizontalAlignment="Left" Margin="113,99,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_title" HorizontalAlignment="Left" Margin="113,130,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_coordinator" HorizontalAlignment="Left" Margin="113,161,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="Add_Unit" Content="Add Unit" HorizontalAlignment="Left" Margin="10,36,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+        <Button x:Name="AddUnit_Button"
+                    Content="Add" 
+                    FontSize="10"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Top" Margin="153,45,0,0" Grid.Row="1" Click="AddUnit_Button_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="40" Height="15"
+                                    CornerRadius="8"
+                                    Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label x:Name="Edit_Unit" 
+               Content="Edit Unit"
+               HorizontalAlignment="Left" 
+               Margin="20,36,0,0" 
+               Grid.Row="1" 
+               VerticalAlignment="Top" 
+               Foreground="White" 
+               FontSize="18" 
+               Grid.Column="1"/>
+        <Button x:Name="EditUnit_Button"
+            Content="Edit" 
+            FontSize="10"
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Top" Margin="155,45,0,0" Grid.Row="1" Click="EditUnit_Button_Click" Grid.Column="1">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                    <Setter Property="Background" Value="#FE6584"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF4C70"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Width="40" Height="15"
+                        CornerRadius="8"
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Label x:Name="New_Coordinator" Grid.Column="1" Content="New Coordinator" HorizontalAlignment="Left" Margin="9,99,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox x:Name="textbox_newCoordinator" Grid.Column="1" HorizontalAlignment="Left" Margin="115,103,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
