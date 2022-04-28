@@ -227,16 +227,16 @@ namespace WpfApp4.Database
         internal static void EditStaff(int id, string title, string photo)
         {
             {
-                MySqlDataReader check2 = null;
+                
                 MySqlDataReader check4 = null;
-                MySqlDataReader check6 = null;
+                
 
                 MySqlConnection conn = GetConnection();
                 try
                 {
                     conn.Open();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
                 }
@@ -280,7 +280,7 @@ namespace WpfApp4.Database
                 conn.Open();
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -341,16 +341,15 @@ namespace WpfApp4.Database
         internal static void RemoveStaff(string id)
         {
             {
-                MySqlDataReader check2 = null;
+                
                 MySqlDataReader check4 = null;
-                MySqlDataReader check6 = null;
-
+                
                 MySqlConnection conn = GetConnection();
                 try
                 {
                     conn.Open();
                 }
-                catch (Exception ex)
+                catch (Exception )
                 {
 
                 }
@@ -526,7 +525,7 @@ namespace WpfApp4.Database
             {
                 conn.Open();
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }
@@ -592,7 +591,7 @@ namespace WpfApp4.Database
                 {
                     conn.Open();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
 
                 }
@@ -675,7 +674,7 @@ namespace WpfApp4.Database
             {
                 conn.Open();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -738,7 +737,7 @@ namespace WpfApp4.Database
             {
                 conn.Open();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }
@@ -802,7 +801,7 @@ namespace WpfApp4.Database
             {
                 conn.Open();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }

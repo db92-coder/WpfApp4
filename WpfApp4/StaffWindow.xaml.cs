@@ -94,20 +94,5 @@ namespace WpfApp4
 
         }
 
-
-        //private void addStaff_Click(object sender, RoutedEventArgs e)
-        //{
-        //    int Id = Int32.Parse(textbox_id.Text);
-        //    string Title = textbox_id.Text;
-        //    string Campus = textbox_campus.Text;
-        //    int Phone = Int32.Parse(textbox_phone.Text);
-        //    string Room = textbox_photo.Text;
-        //    string Email = textbox_email.Text;
-        //    string Photo = textbox_photo.Text;
-        //    DBAdapter.AddStaff(Id, Title,Campus, Phone,Room,Email, Photo,);
-        //    MessageBox.Show("Updated successully!");
-
-        //}
-
     }
 }
