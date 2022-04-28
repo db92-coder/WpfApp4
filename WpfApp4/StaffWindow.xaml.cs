@@ -95,5 +95,36 @@ namespace WpfApp4
         //}
 
         
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void addStaff_Click(object sender, RoutedEventArgs e)
+        {
+            int Id = Int32.Parse(textbox_id.Text);
+           
+            string Title = textbox_id.Text;
+            string Photo = textbox_photo.Text;
+            string Campus = textbox_campus.Text;
+            string Email = textbox_email.Text;
+            int Phone = Int32.Parse(textbox_phone.Text);
+            string Room = textbox_phone.Text;
+            DBAdapter.AddStaff(Id, Title, Photo, Campus, Email, Phone, Room);
+            MessageBox.Show("Updated successully!");
+        
+        }
+
+        private void editStaff_Click(object sender, RoutedEventArgs e)
+        {
+            string ID = textbox_id.Text;
+            string Title = textbox_title.Text;
+            string Photo = textbox_photo.Text;
+            DBAdapter.EditStaff(ID, Title, Photo);
+
+        }
+
+        
     }
 }
