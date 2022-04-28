@@ -240,7 +240,8 @@ namespace WpfApp4.Database
                 {
 
                 }
-                var check3 = new MySqlCommand("SELECT id FROM staff where id=" + id, conn);
+                var check3 = new MySqlCommand("SELECT id FROM staff where id=@id", conn);
+                check3.Parameters.AddWithValue("@id=", id);
 
                 check4 = check3.ExecuteReader();
                 if (!check4.Read())
@@ -252,10 +253,10 @@ namespace WpfApp4.Database
                 else
                 {
                     check4.Close();
-                    var command = new MySqlCommand("UPDATE staff SET title, photo)", conn);
+                    var command = new MySqlCommand("UPDATE staff SET title=@title, photo=@photo)", conn);
                     command.Parameters.AddWithValue("@title=", title);
                     command.Parameters.AddWithValue("@photo=", photo);
-                    command.Parameters.AddWithValue("@id=", id);
+                    
 
                     command.ExecuteNonQuery();
                 }
@@ -331,6 +332,11 @@ namespace WpfApp4.Database
 
         }
 
+        //EDIT CLASS 
+        public static void EditClass(int code,string campus, string day, int start, int end, string type, string room, int staff)
+        {
+
+        }
         //REMOVE STAFF MEMBER FROM DB
         internal static void RemoveStaff(string id)
         {
@@ -774,7 +780,7 @@ namespace WpfApp4.Database
                             check6.Close();
                             var command = new MySqlCommand("INSERT INTO class (unit_code, campus, day, start, end, type, room, staff)" +
                                 "VALUES('" + code + "','" + campus + "','" + day + "','" + start + "','" + end + "','" + type + "','" + room + "','" + staff + "')", conn);
-
+                            MessageBox.Show("Class Details Added");
                             command.ExecuteNonQuery();
 
                         }

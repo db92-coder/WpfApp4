@@ -232,6 +232,18 @@
             Grid.Row="1" 
             VerticalAlignment="Top" 
             Foreground="White"/>
+        <Label x:Name="newCampus" Grid.Column="1" Content="New Campus" HorizontalAlignment="Left" Margin="0,122,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="New_Day" Grid.Column="1" Content="New Day" HorizontalAlignment="Left" Margin="0,153,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="newStart" Grid.Column="1" Content="New Start" HorizontalAlignment="Left" Margin="0,183,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="newEnd" Content="New End" HorizontalAlignment="Left" Margin="249,219,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White" Grid.ColumnSpan="2"/>
+        <Label x:Name="newType" Grid.Column="1" Content="New Type" HorizontalAlignment="Left" Margin="0,251,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="newRoom" Grid.Column="1" Content="New Room" HorizontalAlignment="Left" Margin="0,285,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox x:Name="textbox_newCampus" Grid.Column="1" HorizontalAlignment="Left" Margin="90,126,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_newDay" Grid.Column="1" HorizontalAlignment="Left" Margin="90,157,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_newStart" Grid.Column="1" HorizontalAlignment="Left" Margin="90,187,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_newEnd" Grid.Column="1" HorizontalAlignment="Left" Margin="90,223,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_newType" Grid.Column="1" HorizontalAlignment="Left" Margin="90,255,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textbox_newRoom" Grid.Column="1" HorizontalAlignment="Left" Margin="90,289,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

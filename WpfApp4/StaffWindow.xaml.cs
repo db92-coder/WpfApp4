@@ -87,10 +87,10 @@ namespace WpfApp4
 
         private void editStaff_Click_1(object sender, RoutedEventArgs e)
         {
-            int ID = Int32.Parse(textbox_id.Text);
-            string Title = textbox_title.Text;
-            string Photo = textbox_photo.Text;
-            DBAdapter.EditStaff(ID, Title, Photo);
+            int id = Int32.Parse(textbox_id.Text);
+            string title = textbox_title.Text;
+            string photo = textbox_photo.Text;
+            DBAdapter.EditStaff(id, title, photo);
 
         }
 
