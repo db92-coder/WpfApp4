@@ -94,6 +94,7 @@ namespace WpfApp4
                     string title = textbox_title.Text;
                     int coordinator = Int32.Parse(textbox_coordinator.Text);
                     DBAdapter.AddUnit(code, title, coordinator);
+                    UnitGrid.Items.Refresh();
                 }
                 catch
                 {
@@ -121,6 +122,7 @@ namespace WpfApp4
                     int coordinator = Int32.Parse(textbox_newCoordinator.Text);
 
                     DBAdapter.EditUnit(code, coordinator);
+                    
                 }
 
                 catch

@@ -22,6 +22,24 @@
                                 ObjectInstance="{StaticResource staff}"
                                 MethodName="GetViewableList">
             </ObjectDataProvider>
+            <local1:UnitController x:Key="unit"/>
+            <ObjectDataProvider x:Key="viewableUnits"
+                                ObjectInstance="{StaticResource unit}"
+                                MethodName="GetViewableUnits">
+            </ObjectDataProvider>
+
+            <local1:ConsController x:Key="consultation"/>
+            <ObjectDataProvider x:Key="viewableConsultations"
+                                ObjectInstance="{StaticResource consultation}"
+                                MethodName="GetViewableConsultations">
+            </ObjectDataProvider>
+            <local1:ClassController x:Key="class"/>
+            <ObjectDataProvider x:Key="viewableClasses"
+                                ObjectInstance="{StaticResource class}"
+                                MethodName="GetViewableClasses">
+                
+            </ObjectDataProvider>
+            
         </ResourceDictionary>
 
     </Application.Resources>

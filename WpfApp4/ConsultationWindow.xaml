@@ -232,7 +232,8 @@
                             FontWeight="Bold"
                             Click="CloseButton_Click" Grid.Column="12" Margin="4,2,4,3"/>
 
-
+            <DataGrid x:Name="ConsGrid" 
+                  ItemsSource="{Binding Source={StaticResource viewableConsultations}}" Grid.ColumnSpan="8" Margin="8,195,4,-371" Grid.Column="5"/>
         </Grid>
     </Grid>
 </Window>

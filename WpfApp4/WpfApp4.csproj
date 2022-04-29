@@ -104,6 +104,8 @@
     <Compile Include="ConsultationWindow.xaml.cs">
       <DependentUpon>ConsultationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controller\ClassController.cs" />
+    <Compile Include="Controller\ConsController.cs" />
     <Compile Include="Controller\StaffController.cs" />
     <Compile Include="Controller\UnitController.cs" />
     <Compile Include="Database\DBAdapter.cs" />

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp4"
         mc:Ignorable="d"
-        Title="StaffWindow" Height="400" Width="500"
+        Title="StaffWindow" Height="550" Width="500"
         WindowStyle="None"
         ResizeMode="CanResize"
         Background="#181735">
@@ -247,6 +247,7 @@
         <TextBox x:Name="textbox_newType" Grid.Column="1" HorizontalAlignment="Left" Margin="95,183,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="textbox_newRoom" Grid.Column="1" HorizontalAlignment="Left" Margin="95,219,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock TextWrapping="Wrap" Foreground="White" Margin="32,272,30,31" Grid.Row="1" Grid.Column="1">To edit a class, enter current class information under add class, then add new information under edit class.</TextBlock>
-
+        <DataGrid x:Name="ClassGrid" 
+                  ItemsSource="{Binding Source={StaticResource viewableClasses}}" Grid.ColumnSpan="2" Margin="19,342,10,0" Grid.Row="1"/>
     </Grid>
 </Window>
