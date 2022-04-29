@@ -30,55 +30,6 @@ namespace WpfApp4.Database
         }
 
         //ADDING STAFF DETAILS TO DB
-        //internal static void AddStaff(int id, string title, string campus,
-        //    int phone, string room, string email, string photo)
-        //{
-
-        //    MySqlDataReader check2 = null;
-        //    MySqlConnection conn = GetConnection();
-        //    try
-        //    {
-        //        conn.Open();
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //    }
-        //    var check = new MySqlCommand("SELECT id FROM staff where id=@id", conn);
-        //    check2 = check.ExecuteReader();
-        //    if (!check2.Read())
-        //    {
-        //        MessageBox.Show("invalid coordinator id", "Error");
-        //        check2.Close();
-        //        conn.Close();
-        //    }
-        //    else
-        //    {
-        //        try
-        //        {
-        //            check2.Close();
-        //            var command = new MySqlCommand("UPDATE staff SET title=@title, campus=@campus, phone=@phone, room=@room, email=@email, photo=@photo WHERE id=@id", conn);
-        //            command.Parameters.AddWithValue("@title", title);
-        //            command.Parameters.AddWithValue("@campus", campus);
-        //            command.Parameters.AddWithValue("@phone", phone);
-        //            command.Parameters.AddWithValue("@room", room);
-        //            command.Parameters.AddWithValue("@email", email);
-        //            command.Parameters.AddWithValue("@photo", photo);
-        //            command.Parameters.AddWithValue("@id", id);
-        //            MessageBox.Show("Details Added");
-
-        //        }
-        //        finally
-        //        {
-        //            check2.Close();
-        //            conn.Close();
-        //        }
-
-        //    }
-        //}
-
-
-        //add staff method from week 8 tutorial
         public static void AddStaff(int id, string title, string campus,
             int phone, string room, string email, string photo)
         {
@@ -93,8 +44,7 @@ namespace WpfApp4.Database
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO staff (title, campus, phone, room, email, photo) " +
-                    "VALUES('" + title + "','" + campus + "','" + phone + "','" + room + "','" + email + "','" + photo + "')WHERE id=" + id, conn);
+                MySqlCommand cmd = new MySqlCommand("UPDATE hris.staff SET title='" + title + "',campus='" + campus + "', phone='" + phone + "',room='" + room + "',email='" + email + "',photo='" + photo + "'WHERE staff.id=" + id, conn);
                 MessageBox.Show("Staff Details Added");
                 cmd.ExecuteNonQuery();
             }
@@ -240,9 +190,8 @@ namespace WpfApp4.Database
                 {
 
                 }
-                var check3 = new MySqlCommand("SELECT id FROM staff where id=@id", conn);
-                check3.Parameters.AddWithValue("@id=", id);
-
+                var check3 = new MySqlCommand("SELECT id="+ id+ " FROM staff", conn);
+                MessageBox.Show("Staff " + id + " selected");
                 check4 = check3.ExecuteReader();
                 if (!check4.Read())
                 {
@@ -253,9 +202,9 @@ namespace WpfApp4.Database
                 else
                 {
                     check4.Close();
-                    var command = new MySqlCommand("UPDATE staff SET title=@title, photo=@photo)", conn);
-                    command.Parameters.AddWithValue("@title=", title);
-                    command.Parameters.AddWithValue("@photo=", photo);
+                    var command = new MySqlCommand("UPDATE hris.staff SET title='"+title+"', photo='"+photo+"'WHERE id="+id, conn);
+                    //command.Parameters.AddWithValue("@title=", title);
+                    //command.Parameters.AddWithValue("@photo=", photo);
                     
 
                     command.ExecuteNonQuery();
