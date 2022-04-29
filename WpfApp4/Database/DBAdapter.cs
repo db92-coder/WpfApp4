@@ -282,9 +282,91 @@ namespace WpfApp4.Database
         }
 
         //EDIT CLASS 
-        public static void EditClass(string code,string campus, string day, int start, int end, string type, string room, int staff)
+        public static void EditClass(string code,string campus, string day, int start, int end, string type, string room,string newCampus,
+            string newDay, int newStart,int newEnd, string newType,string newRoom,int staff)
         {
+            {
+                MySqlDataReader check2 = null;
+                MySqlDataReader check4 = null;
+                MySqlDataReader check6 = null;
 
+                MySqlConnection conn = GetConnection();
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception)
+                {
+
+                }
+                var check3 = new MySqlCommand("SELECT staff="+staff+"FROM class", conn);
+
+                check4 = check3.ExecuteReader();
+                if (!check4.Read())
+                {
+                    MessageBox.Show("invalid coordinator id", "Error");
+                    check4.Close();
+                    conn.Close();
+                }
+                else
+                {
+                    check4.Close();
+                    var check = new MySqlCommand("SELECT * from class where " + newStart + " < end and start < " + newEnd + " and" +
+                        " staff_id = " + staff + " and day = " + '"' + newDay + '"', conn);
+                    MessageBox.Show("Consultation Changed");
+                    check2 = check.ExecuteReader();
+                    if (check2.Read())
+                    {
+                        MessageBox.Show("Timetable overlap or consultation does not exist to be edited", "error");
+                        check2.Close();
+                        conn.Close();
+                    }
+                    else
+                    {
+                        check2.Close();
+                        var check5 = new MySqlCommand("SELECT * FROM class where staff_id=@staff AND day=@day AND start=@start AND end=@end", conn);
+                        check5.Parameters.AddWithValue("@staff", staff);
+                        check5.Parameters.AddWithValue("@day", day);
+                        check5.Parameters.AddWithValue("@start", start);
+                        check5.Parameters.AddWithValue("@end", end);
+                        check6 = check5.ExecuteReader();
+
+                        if (!check6.Read())
+                        {
+                            MessageBox.Show("Class does not exist", "error");
+                            check6.Close();
+                            conn.Close();
+                        }
+
+                        else
+                        {
+                            try
+                            {
+                                check6.Close();
+                                var command = new MySqlCommand("UPDATE consultation SET day=@newDay, start=@newStart, end=@newEnd WHERE staff_id=@staff AND day=@day AND start=@start AND end=@end", conn);
+                                command.Parameters.AddWithValue("@day", day);
+                                command.Parameters.AddWithValue("@start", start);
+                                command.Parameters.AddWithValue("@end", end);
+                                command.Parameters.AddWithValue("@newday", newDay);
+                                command.Parameters.AddWithValue("@newstart", newStart);
+                                command.Parameters.AddWithValue("@newend", newEnd);
+                                command.Parameters.AddWithValue("@staff", staff);
+
+                                MessageBox.Show("Class Details Updated");
+                                command.ExecuteNonQuery();
+
+                            }
+                            finally
+                            {
+                                check6.Close();
+                                conn.Close();
+                            }
+                        }
+
+
+                    }
+                }
+            }
         }
         //REMOVE STAFF MEMBER FROM DB
         internal static void RemoveStaff(string id)
@@ -782,39 +864,6 @@ namespace WpfApp4.Database
 
 
         }
-
-
-
-        //addstaff 3 method
-        //public static void AddStaff(int id, string title, string campus,
-        //    int phone, string room, string email, string photo)
-        //{
-
-        //    MySqlConnection conn = GetConnection();
-        //    researcher_id = "1234671";
-        //    researcher_type = "staff";
-        //    researcher_given_name = "Jack";
-        //    researcher_family_name = "Wilson";
-
-        //    try
-        //    {
-        //        conn.Open();
-
-        //        MySqlCommand cmd = new MySqlCommand("UPDATE `hris`.`staff` SET `title` = '" + title + "','`campus` = '" + campus + "','`phone`='" + phone + "','`room`='" + room + "','`email`='" + email + "',`photo`='" + photo + "' WHERE `staff`.`id` ='" + id, conn);
-        //        MessageBox.Show("Staff Details Added");
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //    catch (MySqlException e)
-        //    {
-        //        ReportError("Adding staff", e);
-        //    }
-        //    finally
-        //    {
-        //        conn.Close();
-
-        //    }
-        //}
-
 
 
     }

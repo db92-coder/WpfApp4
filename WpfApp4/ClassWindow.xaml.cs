@@ -68,15 +68,22 @@ namespace WpfApp4
         private void classEdit_Button_Click(object sender, RoutedEventArgs e)
         {
             string Code = textbox_unit.Text;
-            string Campus = textbox_newCampus.Text;
-            string Day = textbox_newDay.Text;
-            int Start = Int32.Parse(textbox_newStart.Text);
-            int End = int.Parse(textbox_newEnd.Text);
-            string Type = textbox_newType.Text;
-            string Room = textbox_newRoom.Text;
-            int Staff = int.Parse(textbox_StaffClass.Text);
+            string Campus = textbox_campus.Text;
+            string Day = textbox_day.Text;
+            int Start = Int32.Parse(textbox_StartTime.Text);
+            int End = Int32.Parse(textbox_EndTime.Text);
+            string Type = textbox_type.Text;
+            string Room = textbox_room.Text;
+            string newCampus = textbox_newCampus.Text;
+            string newDay = textbox_newDay.Text;
+            int newStart = Int32.Parse(textbox_newStart.Text);
+            int newEnd = int.Parse(textbox_newEnd.Text);
+            string newType = textbox_newType.Text;
+            string newRoom = textbox_newRoom.Text;
+            int Staff = Int32.Parse(textbox_StaffClass.Text);
 
-            DBAdapter.EditClass(Code, Campus, Day, Start, End, Type, Room, Staff);
+            DBAdapter.EditClass(Code, Campus, Day, Start, End, Type, Room,
+                newCampus, newDay,newStart,newEnd,newType,newRoom,Staff);
         }
     }
 }
