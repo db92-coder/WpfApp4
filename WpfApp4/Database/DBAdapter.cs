@@ -45,7 +45,6 @@ namespace WpfApp4.Database
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand("UPDATE hris.staff SET title='" + title + "',campus='" + campus + "', phone='" + phone + "',room='" + room + "',email='" + email + "',photo='" + photo + "'WHERE staff.id=" + id, conn);
-                MessageBox.Show("Staff Details Added");
                 cmd.ExecuteNonQuery();
             }
             catch (MySqlException e)
@@ -53,7 +52,9 @@ namespace WpfApp4.Database
                 ReportError("Adding staff", e);
             }
             finally
+
             {
+                MessageBox.Show("Staff details added");
                 conn.Close();
 
             }
@@ -102,6 +103,7 @@ namespace WpfApp4.Database
 
             finally
             {
+
                 rdr.Close();
                 conn.Close();
             }
@@ -136,7 +138,7 @@ namespace WpfApp4.Database
 
 
         //RETRIEVE UNIT DETAILS FROM DB
-        public static List<Unit> GetUnitDetails(int id)
+        public static List<Unit> GetUnitDetails()
         {
             MySqlDataReader rdr = null;
             MySqlConnection conn = GetConnection();
@@ -145,8 +147,8 @@ namespace WpfApp4.Database
             try
             {
                 conn.Open();
-                var command = new MySqlCommand("SELECT code, title, coordinator FROM unit WHERE coordinator=?id", conn);
-                command.Parameters.AddWithValue("id", id);
+                var command = new MySqlCommand("SELECT * FROM unit", conn);
+            
                 rdr = command.ExecuteReader();
 
                 while (rdr.Read())
@@ -157,6 +159,7 @@ namespace WpfApp4.Database
                     {
                         Code = rdr.GetString(0),
                         Title = rdr.GetString(1),
+                        Coordinator =rdr.GetInt32(2)
 
                     });
 
@@ -284,7 +287,8 @@ namespace WpfApp4.Database
                     }
 
                     finally
-                    {
+                    {   
+
                         MessageBox.Show("Unit Coordinator successfully changed");
                         check2.Close();
                         conn.Close();
@@ -383,13 +387,12 @@ namespace WpfApp4.Database
                                     command.Parameters.AddWithValue("@newstart", newStart);
                                     command.Parameters.AddWithValue("@newend", newEnd);
                                     command.Parameters.AddWithValue("@staff", staff);
-                                    MessageBox.Show("Class Changed");
-                                    MessageBox.Show("Class Details Updated");
                                     command.ExecuteNonQuery();
 
                                 }
                                 finally
                                 {
+                                    MessageBox.Show("Class Details Updated");
                                     check6.Close();
                                     conn.Close();
                                 }
@@ -493,7 +496,7 @@ namespace WpfApp4.Database
         }
 
         //RETRIEVE CONSULT DETAILS FROM DB
-        public static List<Consultation> GetConsultationDetails(int id)
+        public static List<Consultation> GetConsultationDetails()
         {
             MySqlDataReader rdr = null;
             MySqlConnection conn = GetConnection();
@@ -502,8 +505,8 @@ namespace WpfApp4.Database
             try
             {
                 conn.Open();
-                var command = new MySqlCommand("SELECT staff_id, day, start, end FROM consultation where staff_id=?id", conn);
-                command.Parameters.AddWithValue("id", id);
+                var command = new MySqlCommand("SELECT * FROM consultation", conn);
+            
                 rdr = command.ExecuteReader();
 
 
@@ -513,6 +516,7 @@ namespace WpfApp4.Database
                     // fill in additional data
                     consultations.Add(new Consultation
                     {
+                        ID = rdr.GetInt32(0),
                         Day = ParseEnum<DayOfWeek>(rdr.GetString(1)),
                         Start = rdr.GetTimeSpan(2),
                         End = rdr.GetTimeSpan(3)
@@ -534,7 +538,7 @@ namespace WpfApp4.Database
 
 
         //GET CLASS DETAILS FROM DB
-        public static List<UnitClass> GetClassDetails(int id)
+        public static List<UnitClass> GetClassDetails()
         {
             MySqlDataReader rdr = null;
             MySqlConnection conn = GetConnection();
@@ -544,8 +548,8 @@ namespace WpfApp4.Database
             try
             {
                 conn.Open();
-                var command = new MySqlCommand("SELECT unit_code, campus, day, start, end, type, room FROM class where staff=?id", conn);
-                command.Parameters.AddWithValue("id", id);
+                var command = new MySqlCommand("SELECT * FROM class", conn);
+             
                 rdr = command.ExecuteReader();
 
                 while (rdr.Read())
@@ -560,7 +564,8 @@ namespace WpfApp4.Database
                         Start = rdr.GetTimeSpan(3),
                         End = rdr.GetTimeSpan(4),
                         Type = ParseEnum<ClassType>(rdr.GetString(5)),
-                        Room = rdr.GetString(6)
+                        Room = rdr.GetString(6),
+                        Staff = rdr.GetInt32(7)
 
                     });
 
@@ -629,12 +634,12 @@ namespace WpfApp4.Database
                         {
                             check6.Close();
                             var command = new MySqlCommand("INSERT INTO consultation (staff_id, day, start, end) VALUES('" + sid + "','" + day + "','" + start + "','" + end + "')", conn);
-                            MessageBox.Show("Consultation Added");
                             command.ExecuteNonQuery();
 
                         }
                         finally
                         {
+                            MessageBox.Show("Consultation Added");
                             check6.Close();
                             conn.Close();
                         }
@@ -671,7 +676,6 @@ namespace WpfApp4.Database
                 {
                     check4.Close();
                     var check = new MySqlCommand("SELECT * from consultation where " + newstart + " < end and start < " + newend + " and staff_id = " + sid + " and day = " + '"' + newday + '"', conn);
-                    MessageBox.Show("Consultation Changed");
                     check2 = check.ExecuteReader();
                     if (check2.Read())
                     {
@@ -716,6 +720,7 @@ namespace WpfApp4.Database
                             }
                             finally
                             {
+                                MessageBox.Show("Consultation edited successfully");
                                 check6.Close();
                                 conn.Close();
                             }
@@ -742,7 +747,6 @@ namespace WpfApp4.Database
 
             }
             var check3 = new MySqlCommand("SELECT id FROM staff where id=" + id, conn);
-            MessageBox.Show("Consultation Removed");
             check4 = check3.ExecuteReader();
             if (!check4.Read())
             {
@@ -783,6 +787,7 @@ namespace WpfApp4.Database
                     }
                     finally
                     {
+                        MessageBox.Show("Consultation Removed");
                         check2.Close();
                         conn.Close();
                     }
@@ -842,12 +847,13 @@ namespace WpfApp4.Database
                             check6.Close();
                             var command = new MySqlCommand("INSERT INTO class (unit_code, campus, day, start, end, type, room, staff)" +
                                 "VALUES('" + code + "','" + campus + "','" + day + "','" + start + "','" + end + "','" + type + "','" + room + "','" + staff + "')", conn);
-                            MessageBox.Show("Class Details Added");
+                            
                             command.ExecuteNonQuery();
 
                         }
                         finally
                         {
+                            MessageBox.Show("Class Details Added");
                             check6.Close();
                             conn.Close();
                         }
@@ -882,12 +888,12 @@ namespace WpfApp4.Database
                 {
                     check2.Close();
                     var command = new MySqlCommand("INSERT INTO unit (code, title, coordinator) VALUES('" + code + "','" + title + "','" + coordinator + "')", conn);
-                    MessageBox.Show("Unit Added");
                     command.ExecuteNonQuery();
 
                 }
                 finally
                 {
+                    MessageBox.Show("Unit Added");
                     check2.Close();
                     conn.Close();
                 }
