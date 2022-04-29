@@ -124,7 +124,7 @@ namespace WpfApp4.Database
         {
             if(value != "")
             {
-                return (T)Enum.Parse(typeof(T), value);
+                return (T)Enum.Parse(typeof(T), value, true);
             }
             else { return default(T); }
         }
@@ -282,13 +282,14 @@ namespace WpfApp4.Database
         }
 
         //EDIT CLASS 
-        public static void EditClass(string code,string campus, string day, int start, int end, string type, string room,string newCampus,
+         public static void EditClass(string code,string campus, string day, int start, int end, string type, string room,string newCampus,
             string newDay, int newStart,int newEnd, string newType,string newRoom,int staff)
         {
             {
                 MySqlDataReader check2 = null;
                 MySqlDataReader check4 = null;
                 MySqlDataReader check6 = null;
+                MySqlDataReader check8 = null;
 
                 MySqlConnection conn = GetConnection();
                 try
@@ -317,53 +318,69 @@ namespace WpfApp4.Database
                     check2 = check.ExecuteReader();
                     if (check2.Read())
                     {
-                        MessageBox.Show("Timetable overlap or consultation does not exist to be edited", "error");
+                        MessageBox.Show("Timetable overlap with class or class does not exist to be edited", "error");
                         check2.Close();
                         conn.Close();
                     }
                     else
                     {
                         check2.Close();
-                        var check5 = new MySqlCommand("SELECT * FROM class where staff=@staff AND day=@day AND start=@start AND end=@end", conn);
-                        check5.Parameters.AddWithValue("@staff", staff);
-                        check5.Parameters.AddWithValue("@day", day);
-                        check5.Parameters.AddWithValue("@start", start);
-                        check5.Parameters.AddWithValue("@end", end);
-                        check6 = check5.ExecuteReader();
+                        var check7 = new MySqlCommand("SELECT * from consultation where " + newStart + " < end and start < " + newEnd + " and" +
+                            " staff_id= " + staff + " and day = " + '"' + newDay + '"', conn);
 
-                        if (!check6.Read())
+                        check8 = check7.ExecuteReader();
+                        if (check8.Read())
                         {
-                            MessageBox.Show("Class does not exist", "error");
-                            check6.Close();
+                            MessageBox.Show("Timetable overlap  with consultation or class does not exist to be edited", "error");
+                            check8.Close();
                             conn.Close();
                         }
-
                         else
                         {
-                            try
-                            {
-                                check6.Close();
-                                var command = new MySqlCommand("UPDATE class SET day=@newDay, start=@newStart, end=@newEnd WHERE staff=@staff AND day=@day AND start=@start AND end=@end", conn);
-                                command.Parameters.AddWithValue("@day", day);
-                                command.Parameters.AddWithValue("@start", start);
-                                command.Parameters.AddWithValue("@end", end);
-                                command.Parameters.AddWithValue("@newday", newDay);
-                                command.Parameters.AddWithValue("@newstart", newStart);
-                                command.Parameters.AddWithValue("@newend", newEnd);
-                                command.Parameters.AddWithValue("@staff", staff);
-                                MessageBox.Show("Class Changed");
-                                MessageBox.Show("Class Details Updated");
-                                command.ExecuteNonQuery();
+                            check8.Close();
+                            var check5 = new MySqlCommand("SELECT * FROM class where staff=@staff AND day=@day AND start=@start AND end=@end", conn);
+                            check5.Parameters.AddWithValue("@staff", staff);
+                            check5.Parameters.AddWithValue("@day", day);
+                            check5.Parameters.AddWithValue("@start", start);
+                            check5.Parameters.AddWithValue("@end", end);
+                            check6 = check5.ExecuteReader();
 
-                            }
-                            finally
+                            if (!check6.Read())
                             {
+                                MessageBox.Show("Class does not exist", "error");
                                 check6.Close();
                                 conn.Close();
                             }
+
+                            else
+                            {
+                                try
+                                {
+                                    check6.Close();
+                                    var command = new MySqlCommand("UPDATE class SET day=@newDay, start=@newStart, end=@newEnd, room=@newRoom, campus=@newCampus, type=@newType WHERE staff=@staff AND day=@day AND start=@start AND end=@end", conn);
+                                    command.Parameters.AddWithValue("@day", day);
+                                    command.Parameters.AddWithValue("@start", start);
+                                    command.Parameters.AddWithValue("@end", end);
+                                    command.Parameters.AddWithValue("@newRoom", newRoom);
+                                    command.Parameters.AddWithValue("@newCampus", newCampus);
+                                    command.Parameters.AddWithValue("@newType", newType);
+                                    command.Parameters.AddWithValue("@newday", newDay);
+                                    command.Parameters.AddWithValue("@newstart", newStart);
+                                    command.Parameters.AddWithValue("@newend", newEnd);
+                                    command.Parameters.AddWithValue("@staff", staff);
+                                    MessageBox.Show("Class Changed");
+                                    MessageBox.Show("Class Details Updated");
+                                    command.ExecuteNonQuery();
+
+                                }
+                                finally
+                                {
+                                    check6.Close();
+                                    conn.Close();
+                                }
+                            }
+
                         }
-
-
                     }
                 }
             }
