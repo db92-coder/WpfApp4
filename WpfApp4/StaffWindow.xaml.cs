@@ -72,27 +72,61 @@ namespace WpfApp4
 
         private void addStaff_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                int id = Int32.Parse(textbox_id.Text);
+                string title = textbox_title.Text;
+                string campus = textbox_campus.Text;
+                int phone = Int32.Parse(textbox_phone.Text);
+                string room = textbox_room.Text;
+                string email = textbox_email.Text;
+                string photo = textbox_photo.Text;
 
-            int id = Int32.Parse(textbox_id.Text);
-            string title = textbox_title.Text;
-            string campus = textbox_campus.Text;
-            int phone = Int32.Parse(textbox_phone.Text);
-            string room = textbox_room.Text;
-            string email = textbox_email.Text;
-            string photo = textbox_photo.Text;
-            
-            DBAdapter.AddStaff(id,title, campus,phone,room,email,photo);
-        
+                DBAdapter.AddStaff(id, title, campus, phone, room, email, photo);
+            }
+            catch
+            {
+                MessageBox.Show("To add details to staff member, please fill out all fields", "Error");
+            }
+
+
+
         }
 
         private void editStaff_Click_1(object sender, RoutedEventArgs e)
-        {
-            int id = Int32.Parse(textbox_id.Text);
-            string title = textbox_title.Text;
-            string photo = textbox_photo.Text;
-            DBAdapter.EditStaff(id, title, photo);
+        {   
+
+            if (String.IsNullOrEmpty(textbox_id.Text) || String.IsNullOrEmpty(textbox_title.Text) || String.IsNullOrEmpty(textbox_photo.Text))
+            {
+                MessageBox.Show("Please enter a title and photo to edit staff details", "Error");
+
+            }
+
+            else
+            {
+                try
+                {
+                    int id = Int32.Parse(textbox_id.Text);
+                    string title = textbox_title.Text;
+                    string photo = textbox_photo.Text;
+                    DBAdapter.EditStaff(id, title, photo);
+                }
+                
+                catch
+                {
+                    MessageBox.Show("Check all information is valid and try again", "Error");
+                }
+            }
+            
 
         }
 
+        private void DataGrid_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyName == "Consultations" || e.PropertyName == "Units" || e.PropertyName == "Classes" || e.PropertyName == "Photo")
+            {
+                e.Column = null;
+            }
+        }
     }
 }

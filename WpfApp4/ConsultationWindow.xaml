@@ -16,19 +16,19 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="160"/>
-                <ColumnDefinition Width="170"/>
-                <ColumnDefinition Width="270"/>
+                <ColumnDefinition Width="264"/>
+                <ColumnDefinition Width="236"/>
+
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Add Consultation" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="3,9,0,350" Width="98"/>
+            <TextBlock Text="Add Consultation" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="26,9,0,350" Width="98"/>
             <StackPanel Grid.Column="0" Margin="0,40,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <Label Content="ID" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <TextBox x:Name="textbox_id" Width="104" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16,0,12,0"/>
+                    <TextBox x:Name="textbox_id" Width="104" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="18,0,12,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0">
                     <Label Content="Day" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBox x:Name="textbox_day" Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="9,0,12,0"/>
+                    <TextBox x:Name="textbox_day" Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,12,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <Label Content="Start" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -39,7 +39,7 @@
                     <TextBox x:Name="textbox_finish" Width="104" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,12,0"/>
                 </StackPanel>
             </StackPanel>
-            <TextBlock Text="Edit Consultation" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="0,9,0,350" Grid.Column="1" Width="98"/>
+            <TextBlock Text="Edit Consultation" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,10,0,349" Grid.Column="1" Width="98"/>
             <StackPanel Grid.Column="1" Margin="0,40,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0"/>
@@ -50,8 +50,8 @@
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0"/>
             </StackPanel>
 
-            <TextBlock Text="Remove Consultation" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="0,212,0,0" VerticalAlignment="Top" Width="122" Height="16"/>
-            <StackPanel Grid.Column="2" Margin="0,40,100,0">
+            <TextBlock Text="Remove Consultation" Foreground="White" FontWeight="Bold" HorizontalAlignment="Left" Margin="26,211,0,0" VerticalAlignment="Top" Width="122" Height="16"/>
+            <StackPanel Grid.Column="1" Margin="0,40,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0"/>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0"/>
@@ -62,11 +62,11 @@
                 TextWrapping="WrapWithOverflow" 
                 Foreground="White" 
                 VerticalAlignment="Top" 
-                Margin="0,317,0,0"
+                Margin="10,317,130,0"
                 HorizontalAlignment="Center" 
                 Width="124" Height="48">Consultation start and finish times are in format HHMMSS</TextBlock>
             <Button x:Name="addButton" 
-                    Margin="106,9,2,349" 
+                    Margin="87,9,21,349" 
                     Content="Add" 
                     FontSize="10"
                     Click="addButton_Click">
@@ -121,7 +121,7 @@
                      HorizontalAlignment="Left" 
                      VerticalAlignment="Top" Margin="77,109,0,0" Height="18" Grid.Column="1"/>
             <Button x:Name="editButton" 
-                    Margin="103,9,0,349" 
+                    Margin="144,9,0,349" 
                     Content="Edit" 
                     FontSize="10"
                     HorizontalAlignment="Left" 
@@ -152,7 +152,7 @@
                 </Button.Template>
             </Button>
             <Button x:Name="removeButton" 
-                    Margin="26,244,0,107"
+                    Margin="58,232,0,119"
                     HorizontalAlignment="Left" 
                     Width="53" 
                     FontSize="10"

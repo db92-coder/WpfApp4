@@ -77,19 +77,59 @@ namespace WpfApp4
 
         private void AddUnit_Button_Click(object sender, RoutedEventArgs e)
         {
-            string code = textbox_unitcode.Text;
-            string title = textbox_title.Text;
-            int coordinator = Int32.Parse(textbox_coordinator.Text);
 
-            DBAdapter.AddUnit(code, title, coordinator);
+            if (String.IsNullOrEmpty(textbox_unitcode.Text) || String.IsNullOrEmpty(textbox_title.Text))
+            {
+                MessageBox.Show("Please fill all information to add a unit", "Error");
+            }
+            else if(String.IsNullOrEmpty(textbox_coordinator.Text))
+            {
+                MessageBox.Show("Please enter a valid staff ID", "Error");
+            }
+            else
+            {
+                try
+                {
+                    string code = textbox_unitcode.Text;
+                    string title = textbox_title.Text;
+                    int coordinator = Int32.Parse(textbox_coordinator.Text);
+                    DBAdapter.AddUnit(code, title, coordinator);
+                }
+                catch
+                {
+                    MessageBox.Show("Please check all inputs are correct and try again");
+                }
+            }
+            
         }
 
         private void EditUnit_Button_Click(object sender, RoutedEventArgs e)
-        {
-            string code = textbox_unitcode.Text;
-            int coordinator = Int32.Parse(textbox_newCoordinator.Text);
+        {   
+            if (String.IsNullOrEmpty(textbox_NewCode.Text))
+            {
+                MessageBox.Show("Please enter a unit code to change unit coordinator", "Error");
+            }
+            else if(String.IsNullOrEmpty(textbox_newCoordinator.Text))
+            {
+                MessageBox.Show("Please enter a valid ID for new coordinator");
+            }
+            else
+            {
+                try
+                {
+                    string code = textbox_NewCode.Text;
+                    int coordinator = Int32.Parse(textbox_newCoordinator.Text);
 
-            DBAdapter.EditUnit(code, coordinator);
+                    DBAdapter.EditUnit(code, coordinator);
+                }
+
+                catch
+                {
+                    MessageBox.Show("Please check all inputs are correct and try again", "Error");
+                }
+                
+            }
+           
         }
 
 

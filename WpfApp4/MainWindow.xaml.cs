@@ -95,7 +95,15 @@ namespace WpfApp4
             unitWindow.Show();
         }
 
-        
+        private void DataGrid_OnAutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyName=="Consultations" || e.PropertyName=="Units" || e.PropertyName == "Classes" || e.PropertyName == "Photo")
+            {
+                e.Column = null;
+            }
+        }
+
+
 
 
 

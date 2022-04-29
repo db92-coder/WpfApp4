@@ -41,7 +41,7 @@ namespace WpfApp4
                 Application.Current.MainWindow.WindowState = WindowState.Normal;
             }
         }
-        
+
         //CLOSE WINDOW
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -53,37 +53,71 @@ namespace WpfApp4
 
         private void classAdd_button_Click(object sender, RoutedEventArgs e)
         {
-            string Code = textbox_unit.Text;
-            string Campus = textbox_campus.Text;
-            string Day = textbox_day.Text;
-            int Start = Int32.Parse(textbox_StartTime.Text);
-            int End = Int32.Parse(textbox_EndTime.Text);
-            string Type = textbox_type.Text;
-            string Room = textbox_room.Text;
-            int Staff = Int32.Parse(textbox_StaffClass.Text);
-            DBAdapter.AddClass(Code, Campus, Day, Start, End, Type, Room,Staff);
+            if (String.IsNullOrEmpty(textbox_unit.Text) || String.IsNullOrEmpty(textbox_campus.Text) || String.IsNullOrEmpty(textbox_day.Text) || String.IsNullOrEmpty(textbox_StartTime.Text)
+                || String.IsNullOrEmpty(textbox_EndTime.Text) || String.IsNullOrEmpty(textbox_type.Text) || String.IsNullOrEmpty(textbox_room.Text) || String.IsNullOrEmpty(textbox_StaffClass.Text))
+            {
+                MessageBox.Show("Please fill all information to add a new class", "Error");
+            }
+            else
+            {
+                try
+                {
+                    string Code = textbox_unit.Text;
+                    string Campus = textbox_campus.Text;
+                    string Day = textbox_day.Text;
+                    int Start = Int32.Parse(textbox_StartTime.Text);
+                    int End = Int32.Parse(textbox_EndTime.Text);
+                    string Type = textbox_type.Text;
+                    string Room = textbox_room.Text;
+                    int Staff = Int32.Parse(textbox_StaffClass.Text);
+                    DBAdapter.AddClass(Code, Campus, Day, Start, End, Type, Room, Staff);
+                }
+
+                catch
+                {
+                    MessageBox.Show("Please check all information is valid and try again", "Error");
+                }
+            }
+
+            
             
         }
 
         private void classEdit_Button_Click(object sender, RoutedEventArgs e)
         {
-            string Code = textbox_unit.Text;
-            string Campus = textbox_campus.Text;
-            string Day = textbox_day.Text;
-            int Start = Int32.Parse(textbox_StartTime.Text);
-            int End = Int32.Parse(textbox_EndTime.Text);
-            string Type = textbox_type.Text;
-            string Room = textbox_room.Text;
-            string newCampus = textbox_newCampus.Text;
-            string newDay = textbox_newDay.Text;
-            int newStart = Int32.Parse(textbox_newStart.Text);
-            int newEnd = int.Parse(textbox_newEnd.Text);
-            string newType = textbox_newType.Text;
-            string newRoom = textbox_newRoom.Text;
-            int Staff = Int32.Parse(textbox_StaffClass.Text);
 
-            DBAdapter.EditClass(Code, Campus, Day, Start, End, Type, Room,
-                newCampus, newDay,newStart,newEnd,newType,newRoom,Staff);
+            try
+            {
+                string Code = textbox_unit.Text;
+                string Campus = textbox_campus.Text;
+                string Day = textbox_day.Text;
+                int Start = Int32.Parse(textbox_StartTime.Text);
+                int End = Int32.Parse(textbox_EndTime.Text);
+                string Type = textbox_type.Text;
+                string Room = textbox_room.Text;
+                string newCampus = textbox_newCampus.Text;
+                string newDay = textbox_newDay.Text;
+                int newStart = Int32.Parse(textbox_newStart.Text);
+                int newEnd = int.Parse(textbox_newEnd.Text);
+                string newType = textbox_newType.Text;
+                string newRoom = textbox_newRoom.Text;
+                int Staff = Int32.Parse(textbox_StaffClass.Text);
+
+                DBAdapter.EditClass(Code, Campus, Day, Start, End, Type, Room,
+                    newCampus, newDay, newStart, newEnd, newType, newRoom, Staff);
+            }
+            
+            catch
+            {
+                MessageBox.Show("Please check all information is valid and try again", "Error");
+               
+            }
+           
+        }
+
+        private void textbox_newCampus_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

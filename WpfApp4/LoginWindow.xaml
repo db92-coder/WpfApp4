@@ -92,7 +92,7 @@
                         <Button Name="btnLogin"
                                 IsDefault="True"
                                 Content="Login"
-                                Click="btnLogin_Click">
+                                Click="btnLogin_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="130,0,0,0" Width="38">
                             <Button.Effect>
                                 <DropShadowEffect Color="Gray"
                                                   Opacity=".50"
@@ -102,7 +102,7 @@
                         <Button x:Name="btnCancel"
                                 IsCancel="True"
                                 Content="Cancel"
-                                Click="btnCancel_Click">
+                                Click="btnCancel_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0,0,0">
                             <Button.Effect>
                                 <DropShadowEffect Color="Gray"
                                                   Opacity=".50"

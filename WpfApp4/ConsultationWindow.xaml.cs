@@ -57,40 +57,97 @@ namespace WpfApp4
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            int sid = Int32.Parse(textbox_id.Text);
-            string day = textbox_day.Text;
-            int start = Int32.Parse(textbox_start.Text);
-            int finish = Int32.Parse(textbox_finish.Text);
 
-            DBAdapter.AddConsultation(sid, day, start, finish);
-        }
-
-        private void editButton_Click(object sender, RoutedEventArgs e)
-        {
-            int sid = Int32.Parse(textbox_id.Text);
-            string day = textbox_day.Text;
-            int start = Int32.Parse(textbox_start.Text);
-            int finish = Int32.Parse(textbox_finish.Text);
-            string newDay = textbox_newDay.Text;
-            int newStart = Int32.Parse(textbox_newStart.Text);
-            int newEnd = Int32.Parse(textbox_newEnd.Text);
-            DBAdapter.EditConsultation(sid, day, start, finish, newDay,newStart,newEnd);
-        }
-
-        private void removeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (String.IsNullOrEmpty(textbox_id.Text) || String.IsNullOrEmpty(textbox_day.Text) || String.IsNullOrEmpty(textbox_start.Text) || String.IsNullOrEmpty(textbox_finish.Text))
+            if (String.IsNullOrEmpty(textbox_day.Text) || String.IsNullOrEmpty(textbox_start.Text) || String.IsNullOrEmpty(textbox_finish.Text))
             {
-                MessageBox.Show("Please fill all textboxes for valid removal");
+                MessageBox.Show("Please fill all information to add a consultation", "Error");
+            }
+
+            else if (String.IsNullOrEmpty(textbox_id.Text))
+            {
+                MessageBox.Show("Please enter a valid staff ID", "Error");
             }
 
             else
             {
-                int sid = Int32.Parse(textbox_id.Text);
-                string day = textbox_day.Text;
-                int start = Int32.Parse(textbox_start.Text);
-                int finish = Int32.Parse(textbox_finish.Text);
-                DBAdapter.RemoveConsultation(sid, day, start, finish);
+                try
+                {
+                    int sid = Int32.Parse(textbox_id.Text);
+                    string day = textbox_day.Text;
+                    int start = Int32.Parse(textbox_start.Text);
+                    int finish = Int32.Parse(textbox_finish.Text);
+                    DBAdapter.AddConsultation(sid, day, start, finish);
+                }
+                catch
+                {
+                    MessageBox.Show("Please check all inputs are correct and try again", "Error");
+                }
+            }
+
+
+
+        }
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(textbox_day.Text) || String.IsNullOrEmpty(textbox_start.Text) || String.IsNullOrEmpty(textbox_finish.Text) || String.IsNullOrEmpty(textbox_newDay.Text)
+                || String.IsNullOrEmpty(textbox_newStart.Text) || String.IsNullOrEmpty(textbox_newEnd.Text))
+            {
+                MessageBox.Show("Please fill all needed information to edit consultation", "Error");
+            }
+            else if(String.IsNullOrEmpty(textbox_id.Text))
+            {
+                MessageBox.Show("Please enter a valid staff ID", "Error");
+            }
+            else
+            {
+                try
+                {
+                    int sid = Int32.Parse(textbox_id.Text);
+                    string day = textbox_day.Text;
+                    int start = Int32.Parse(textbox_start.Text);
+                    int finish = Int32.Parse(textbox_finish.Text);
+                    string newDay = textbox_newDay.Text;
+                    int newStart = Int32.Parse(textbox_newStart.Text);
+                    int newEnd = Int32.Parse(textbox_newEnd.Text);
+                    DBAdapter.EditConsultation(sid, day, start, finish, newDay, newStart, newEnd);
+                }
+                catch
+                {
+                    MessageBox.Show("Please check all inputs are correct and try again", "Error");
+                }
+            }
+
+           
+        }
+
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(textbox_day.Text) || String.IsNullOrEmpty(textbox_start.Text) || String.IsNullOrEmpty(textbox_finish.Text))
+            {
+                MessageBox.Show("Please fill all needed information to remove consultation", "Error");
+            }
+            else if(String.IsNullOrEmpty(textbox_id.Text))
+            {
+                MessageBox.Show("Please enter a valid staff ID", "Error");
+            }
+
+            else
+            {
+                try
+                {
+                    int sid = Int32.Parse(textbox_id.Text);
+                    string day = textbox_day.Text;
+                    int start = Int32.Parse(textbox_start.Text);
+                    int finish = Int32.Parse(textbox_finish.Text);
+                    DBAdapter.RemoveConsultation(sid, day, start, finish);
+                }
+                catch
+                {
+                    MessageBox.Show("Please check all inputs are correct and try again", "Error");
+                }
+
+              
             }
         }
     }

@@ -25,9 +25,9 @@
 
             <Grid HorizontalAlignment="Stretch">
                 <Label Content="HRIS"
-                       Foreground="Gray"
+                       Foreground="White"
                        FontWeight="Bold"
-                       FontSize="10"/>
+                       FontSize="12" Margin="10,0,-10,0"/>
                 <Button Height="20"
                         Content="Home" 
                         Foreground="Gray"
@@ -98,12 +98,13 @@
                    Margin="4,0,4,0" Grid.Row="4" Height="20" Click="UnitButton_Click"/>
         </Grid>
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <DataGrid x:Name="McDataGrid" 
+            <DataGrid AutoGenerateColumns="true"
+                  x:Name="McDataGrid" 
                   ItemsSource="{Binding Source={StaticResource viewableStaff}}" 
                   HorizontalAlignment="Stretch" 
                   VerticalAlignment="Stretch"
                   Grid.Column="1" 
-                  Grid.Row="1"/>
+                  Grid.Row="1" AutoGeneratingColumn="DataGrid_OnAutoGeneratingColumn"/>
         </StackPanel>
 
     </Grid>

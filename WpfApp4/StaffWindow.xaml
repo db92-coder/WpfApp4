@@ -20,72 +20,77 @@
                 <ColumnDefinition Width="154"/>
                 <ColumnDefinition Width="176"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Photo" 
-                           Foreground="White" 
-                           HorizontalAlignment="Left" 
-                           VerticalAlignment="Top" Margin="19,68,0,0" Grid.Column="1"/>
-            <TextBox x:Name="textbox_photo" Width="104" 
-                             HorizontalAlignment="Left" 
-                             VerticalAlignment="Top" 
-                             Margin="61,72,0,0" Grid.Column="1"/>
+            <TextBlock Foreground="White" FontWeight="Bold" Grid.ColumnSpan="2" Margin="39,8,138,0">Add staff details</TextBlock>
+            
 
             <Label Content="Campus" 
                            Foreground="White" 
                            HorizontalAlignment="Left" 
-                           VerticalAlignment="Top" Margin="0,68,0,0"/>
+                           VerticalAlignment="Top" Margin="32,66,0,0"/>
             <TextBox x:Name="textbox_campus" Width="104" 
                              HorizontalAlignment="Left" 
                              VerticalAlignment="Top" 
-                             Margin="67,72,0,0" Grid.ColumnSpan="2"/>
+                             Margin="90,72,0,0" Grid.ColumnSpan="2"/>
 
 
             <Label Content="Email" 
                            Foreground="White" 
                            HorizontalAlignment="Left"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Center" Margin="44,162,0,154"/>
             <TextBox x:Name="textbox_email" Width="104" 
                              HorizontalAlignment="Left" 
                              VerticalAlignment="Center" 
-                             Margin="67,0,0,0" Grid.ColumnSpan="2"/>
+                             Margin="90,166,0,158" Grid.ColumnSpan="2"/>
 
             <Label Content="Phone" 
                             Foreground="White" 
                             HorizontalAlignment="Left" 
-                            VerticalAlignment="Top" Margin="0,97,0,0"/>
+                            VerticalAlignment="Top" Margin="41,100,0,0"/>
             <TextBox x:Name="textbox_phone" Width="104" 
                              HorizontalAlignment="Left" 
                              VerticalAlignment="Top" 
-                             Margin="67,101,0,0" Grid.ColumnSpan="2"/>
+                             Margin="90,105,0,0" Grid.ColumnSpan="2"/>
 
 
             <Label Content="Room" 
                            Foreground="White" 
                            HorizontalAlignment="Left" 
-                           VerticalAlignment="Top" Margin="3,126,0,0"/>
+                           VerticalAlignment="Top" Margin="44,131,0,0"/>
             <TextBox x:Name="textbox_room" Width="104" 
                              HorizontalAlignment="Left" 
                              VerticalAlignment="Top" 
-                             Margin="67,130,0,0" Grid.ColumnSpan="2"/>
+                             Margin="90,134,0,0" Grid.ColumnSpan="2"/>
 
-            <Label Content="ID" Foreground="White" Margin="1,40,110,279"/>
+            <Label Content="ID" Foreground="White" Margin="41,40,70,279"/>
             <TextBox x:Name="textbox_id" 
                      TextWrapping="Wrap" 
-                     Margin="67,44,157,283" Grid.ColumnSpan="2"/>
+                     Margin="90,44,138,279" Grid.ColumnSpan="2"/>
+          
 
+            <TextBlock Foreground="White" FontWeight="Bold" Margin="113,8,-91,0" Grid.Column="1">Edit staff details</TextBlock>
 
             <TextBox x:Name="textbox_title" Width="104" 
                              HorizontalAlignment="Left" 
                              VerticalAlignment="Top" 
-                             Margin="61,43,0,0" Grid.Column="1"/>
+                             Margin="153,41,-80,0" Grid.Column="1"/>
             <Label Content="Title" 
                            Foreground="White" 
                            HorizontalAlignment="Left" 
-                           VerticalAlignment="Top" Margin="24,37,0,0" Grid.Column="1"/>
+                           VerticalAlignment="Top" Margin="92,40,0,0" Grid.Column="1"/>
+            <Label Content="Photo" 
+                           Foreground="White" 
+                           HorizontalAlignment="Left" 
+                           VerticalAlignment="Top" Margin="92,68,0,0" Grid.Column="1"/>
+            <TextBox x:Name="textbox_photo" Width="104" 
+                             HorizontalAlignment="Left" 
+                             VerticalAlignment="Top" 
+                             Margin="153,72,-80,0" Grid.Column="1"/>
 
 
 
 
             <DataGrid x:Name="McDataGrid" 
+                      AutoGenerateColumns ="True" AutoGeneratingColumn="DataGrid_OnAutoGeneratingColumn"
                   ItemsSource="{Binding Source={StaticResource viewableStaff}}" Grid.ColumnSpan="2" Margin="0,339,-170,-228"/>
 
         </Grid>
@@ -112,11 +117,10 @@
 
             <TextBlock Text="STAFF"
                        Foreground="White"
-                       Grid.Column="1"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        FontFamily="Fonts/#Dosis"
-                       FontWeight="Medium" Height="15" Width="34"/>
+                       FontWeight="Medium" Height="15" Width="34" Grid.ColumnSpan="2" Margin="17,3,20,7"/>
             <Button
                             Content="🗕"
                             Background="Transparent"
@@ -142,10 +146,11 @@
 
 
         </Grid>
+
         <Button x:Name="addStaff" Content="Add"
                 
                 HorizontalAlignment="Left" 
-                Margin="86,10,0,0" 
+                Margin="156,10,0,0" 
                 VerticalAlignment="Top" Click="addStaff_Click" Grid.Row="1" Height="15" Width="40">
             <Button.Style>
                 <Style TargetType="Button">
@@ -237,10 +242,11 @@
             Text="Category"
             VerticalAlignment="Top" 
             Width="120"/>-->
+
         <Button x:Name="editStaff" Content="Edit"
             
             HorizontalAlignment="Left" 
-            Margin="250,10,0,0" 
+            Margin="374,10,0,0" 
             VerticalAlignment="Top" Grid.Row="1" Height="15" Width="40" Click="editStaff_Click_1">
             <Button.Style>
                 <Style TargetType="Button">
