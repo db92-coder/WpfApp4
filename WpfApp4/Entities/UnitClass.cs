@@ -18,7 +18,7 @@ namespace WpfApp4.Entities
         public TimeSpan End { get; set; }
         public ClassType Type { get; set; }
         public string Room { get; set; }
-        public Staff Staff { get; set; }
+        public int Staff { get; set; }
 
 
         // Check if class times overlap for a given day
