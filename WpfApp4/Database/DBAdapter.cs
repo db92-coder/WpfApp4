@@ -70,7 +70,7 @@ namespace WpfApp4.Database
             try
             {
                 conn.Open();
-                var command = new MySqlCommand("SELECT id, given_name, family_name, title, campus FROM staff", conn);
+                var command = new MySqlCommand("SELECT * FROM staff", conn);
                 rdr = command.ExecuteReader();
 
                 while (rdr.Read())
@@ -83,7 +83,12 @@ namespace WpfApp4.Database
                         GivenName = rdr.GetString(1),
                         FamilyName = rdr.GetString(2),
                         Title = rdr.IsDBNull(3) ? null : rdr.GetString(3),
-                        Campus = ParseEnum<Campus>(rdr.GetString(4))
+                        Campus = ParseEnum<Campus>(rdr.GetString(4)),
+                        Phone = rdr.GetString(5),
+                        Room = rdr.GetString(6),
+                        Email = rdr.GetString(7),
+                        Category = ParseEnum<Category>(rdr.GetString(9))
+                        
                     });
 
                 }
@@ -191,7 +196,7 @@ namespace WpfApp4.Database
 
                 }
                 var check3 = new MySqlCommand("SELECT id="+ id+ " FROM staff", conn);
-                MessageBox.Show("Staff " + id + " selected");
+
                 check4 = check3.ExecuteReader();
                 if (!check4.Read())
                 {
@@ -201,17 +206,27 @@ namespace WpfApp4.Database
                 }
                 else
                 {
-                    check4.Close();
-                    var command = new MySqlCommand("UPDATE hris.staff SET title='"+title+"', photo='"+photo+"'WHERE id="+id, conn);
-                    //command.Parameters.AddWithValue("@title=", title);
-                    //command.Parameters.AddWithValue("@photo=", photo);
+                    try
+                    {
+                        check4.Close();
+                        var command = new MySqlCommand("UPDATE hris.staff SET title='" + title + "', photo='" + photo + "'WHERE id=" + id, conn);
+                        //command.Parameters.AddWithValue("@title=", title);
+                        //command.Parameters.AddWithValue("@photo=", photo);
+
+
+                        command.ExecuteNonQuery();
+                    }
+                    finally
+                    {
+                        MessageBox.Show("Title and photo edited successfully");
+                        check4.Close();
+                        conn.Close();
+                    }
                     
-
-                    command.ExecuteNonQuery();
                 }
+ 
 
-                check4.Close();
-                conn.Close();
+                
             }
         }
 
