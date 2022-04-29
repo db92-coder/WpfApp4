@@ -299,7 +299,7 @@ namespace WpfApp4.Database
                 {
 
                 }
-                var check3 = new MySqlCommand("SELECT staff="+staff+"FROM class", conn);
+                var check3 = new MySqlCommand("SELECT class.staff FROM class WHERE staff="+staff, conn);
 
                 check4 = check3.ExecuteReader();
                 if (!check4.Read())
@@ -312,8 +312,8 @@ namespace WpfApp4.Database
                 {
                     check4.Close();
                     var check = new MySqlCommand("SELECT * from class where " + newStart + " < end and start < " + newEnd + " and" +
-                        " staff_id = " + staff + " and day = " + '"' + newDay + '"', conn);
-                    MessageBox.Show("Consultation Changed");
+                        " staff= " + staff + " and day = " + '"' + newDay + '"', conn);
+                    
                     check2 = check.ExecuteReader();
                     if (check2.Read())
                     {
@@ -324,7 +324,7 @@ namespace WpfApp4.Database
                     else
                     {
                         check2.Close();
-                        var check5 = new MySqlCommand("SELECT * FROM class where staff_id=@staff AND day=@day AND start=@start AND end=@end", conn);
+                        var check5 = new MySqlCommand("SELECT * FROM class where staff=@staff AND day=@day AND start=@start AND end=@end", conn);
                         check5.Parameters.AddWithValue("@staff", staff);
                         check5.Parameters.AddWithValue("@day", day);
                         check5.Parameters.AddWithValue("@start", start);
@@ -343,7 +343,7 @@ namespace WpfApp4.Database
                             try
                             {
                                 check6.Close();
-                                var command = new MySqlCommand("UPDATE consultation SET day=@newDay, start=@newStart, end=@newEnd WHERE staff_id=@staff AND day=@day AND start=@start AND end=@end", conn);
+                                var command = new MySqlCommand("UPDATE class SET day=@newDay, start=@newStart, end=@newEnd WHERE staff=@staff AND day=@day AND start=@start AND end=@end", conn);
                                 command.Parameters.AddWithValue("@day", day);
                                 command.Parameters.AddWithValue("@start", start);
                                 command.Parameters.AddWithValue("@end", end);
@@ -351,7 +351,7 @@ namespace WpfApp4.Database
                                 command.Parameters.AddWithValue("@newstart", newStart);
                                 command.Parameters.AddWithValue("@newend", newEnd);
                                 command.Parameters.AddWithValue("@staff", staff);
-
+                                MessageBox.Show("Class Changed");
                                 MessageBox.Show("Class Details Updated");
                                 command.ExecuteNonQuery();
 
