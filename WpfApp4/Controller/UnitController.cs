@@ -9,17 +9,18 @@ namespace WpfApp4.Controller
     {
 
         public List<Unit> UnitList { get; set; }
-        public ObservableCollection<Unit> ViewableUnits { get; set; }
+        public ObservableCollection<Unit> viewableUnits { get; set; }
+        public ObservableCollection<Unit> VisibleUnits { get { return viewableUnits; } set { } }
 
         public UnitController()
         {
-            UnitList = DBAdapter.GetUnitDetails(123456);
-            ViewableUnits = new ObservableCollection<Unit>(UnitList);
+            UnitList = DBAdapter.GetUnitDetails();
+            viewableUnits = new ObservableCollection<Unit>(UnitList);
         }
 
         public ObservableCollection<Unit> GetViewableUnits()
         {
-            return ViewableUnits;
+            return VisibleUnits;
         }
     }
 }
